@@ -1,20 +1,25 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { View, Text } from 'react-native'
 import React from 'react'
+import { createStackNavigator } from '@react-navigation/stack';
+
 
 type Props = {}
 
+type RootStackParamList = {
+    Home: undefined;
+};
+
 const Router = (props: Props) => {
+    const RootStack = createStackNavigator<RootStackParamList>();
+
     return (
-        <SafeAreaView>
-            <Text
-                style={{
-                    color: 'white',
-                }}
-            >lavuk youneeeeesss</Text>
-        </SafeAreaView>
+        <RootStack.Navigator initialRouteName="Home">
+            <RootStack.Screen name="Home" component={
+                () => <View><Text>Home</Text></View>
+            } />
+
+        </RootStack.Navigator>
     )
 }
 
 export default Router
-
-const styles = StyleSheet.create({})
