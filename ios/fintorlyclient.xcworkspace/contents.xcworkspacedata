@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:fintorlyclient.xcodeproj">
+      location = "group:/Users/fuykan/Documents/GitHub/fintorlyclient/ios/Fintorly.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
