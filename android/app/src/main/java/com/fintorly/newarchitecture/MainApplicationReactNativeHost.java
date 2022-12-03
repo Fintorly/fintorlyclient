@@ -1,4 +1,4 @@
-package com.fintorlyclient.newarchitecture;
+package com.fintorly.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.fintorlyclient.BuildConfig;
-import com.fintorlyclient.newarchitecture.components.MainComponentsRegistry;
-import com.fintorlyclient.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.fintorly.BuildConfig;
+import com.fintorly.newarchitecture.components.MainComponentsRegistry;
+import com.fintorly.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

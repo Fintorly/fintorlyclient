@@ -1,4 +1,4 @@
-package com.fintorlyclient.newarchitecture.components;
+package com.fintorly.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;
