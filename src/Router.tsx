@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 type Props = {}
 
 type RootStackParamList = {
+    
     Home: undefined;
 };
 
