@@ -9,7 +9,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NavigatorContext, { StackType } from './NavigatorContext';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import {
   DefaultHeaderStyle,
   DefaultStackHeaderStyle,
@@ -26,6 +26,7 @@ import {
 } from './DeepLinkMapper';
 import { navigationRef } from './NavigatorRefs';
 import RNShake from 'react-native-shake';
+import Splash from '../Screens/Splash/Splash';
 
 const Stack = createStackNavigator();
 
@@ -49,93 +50,93 @@ function FeedStack() {
   );
 }
 
-// function FavoritesStack() {
-//   const { t } = useTranslation();
-//   return (
-//     <Stack.Navigator
-//       screenOptions={{
-//         ...DefaultHeaderStyle(),
-//       }}>
-//       <Stack.Screen
-//         name="Favorites"
-//         component={FavoritesScreen}
-//         options={{
-//           headerTitle: t(LangKeys.favorite),
-//         }}
-//       />
-//       <Stack.Screen
-//         name="AdvertiseDetail"
-//         component={AdvertiseDetailScreen}
-//         options={{
-//           headerTitle: t(LangKeys.advertise_detail),
-//           ...NavButton({
-//             position: 'right',
-//             iconType: IconType.Favorite,
-//           }),
-//         }}
-//       />
-//     </Stack.Navigator>
-//   );
-// }
+function FavoritesStack() {
+  const { t } = useTranslation();
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        ...DefaultHeaderStyle(),
+      }}>
+      <Stack.Screen
+        name="Favorites"
+        component={FavoritesScreen}
+        options={{
+          headerTitle: t(LangKeys.favorite),
+        }}
+      />
+      <Stack.Screen
+        name="AdvertiseDetail"
+        component={AdvertiseDetailScreen}
+        options={{
+          headerTitle: t(LangKeys.advertise_detail),
+          ...NavButton({
+            position: 'right',
+            iconType: IconType.Favorite,
+          }),
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
 
-// function AdvertiseStack() {
-//   const { t } = useTranslation();
-//   return (
-//     <Stack.Navigator
-//       screenOptions={{
-//         ...DefaultHeaderStyle(),
-//       }}>
-//       <Stack.Screen
-//         name="CreateAdvertiseLanding"
-//         component={CreateAdvertiseLandingScreen}
-//         options={{
-//           headerTitle: t(LangKeys.create_advertise),
-//         }}
-//       />
-//     </Stack.Navigator>
-//   );
-// }
-// function MyAdsStack() {
-//   const { t } = useTranslation();
-//   return (
-//     <Stack.Navigator
-//       screenOptions={{
-//         ...DefaultHeaderStyle(),
-//       }}>
-//       <Stack.Screen
-//         name="MyAds"
-//         component={MyAdsScreen}
-//         options={{
-//           headerTitle: t(LangKeys.my_ads),
-//         }}
-//       />
-//     </Stack.Navigator>
-//   );
-// }
+function AdvertiseStack() {
+  const { t } = useTranslation();
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        ...DefaultHeaderStyle(),
+      }}>
+      <Stack.Screen
+        name="CreateAdvertiseLanding"
+        component={CreateAdvertiseLandingScreen}
+        options={{
+          headerTitle: t(LangKeys.create_advertise),
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+function MyAdsStack() {
+  const { t } = useTranslation();
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        ...DefaultHeaderStyle(),
+      }}>
+      <Stack.Screen
+        name="MyAds"
+        component={MyAdsScreen}
+        options={{
+          headerTitle: t(LangKeys.my_ads),
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
 
-// function MyAccountStack() {
-//   const { t } = useTranslation();
-//   const { userInfo } = useContext(UserContext);
-//   return (
-//     <Stack.Navigator
-//       screenOptions={{
-//         ...DefaultHeaderStyle(),
-//       }}
-//       initialRouteName="MyAccount">
-//       <Stack.Screen
-//         name="MyAccount"
-//         component={MyAccountScreen}
-//         options={{
-//           headerTitle: t(LangKeys.my_account),
-//         }}
-//         initialParams={{
-//           userInfo: userInfo,
-//           shouldRefresh: true,
-//         }}
-//       />
-//     </Stack.Navigator>
-//   );
-// }
+function MyAccountStack() {
+  const { t } = useTranslation();
+  const { userInfo } = useContext(UserContext);
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        ...DefaultHeaderStyle(),
+      }}
+      initialRouteName="MyAccount">
+      <Stack.Screen
+        name="MyAccount"
+        component={MyAccountScreen}
+        options={{
+          headerTitle: t(LangKeys.my_account),
+        }}
+        initialParams={{
+          userInfo: userInfo,
+          shouldRefresh: true,
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
 
 function TabStack() {
   const [keyboardShown, setKeyboardShown] = useState(false);
@@ -221,74 +222,74 @@ function TabStack() {
   );
 }
 
-// function AuthStack() {
-//   const { t } = useTranslation();
-//   return (
-//     <Stack.Navigator
-//       initialRouteName={'Auth'}
-//       screenOptions={{
-//         ...DefaultHeaderStyle(),
-//         ...headerLogo(),
-//         ...DefaultStackHeaderStyle(),
-//         ...HeaderBackIcon(),
-//       }}>
-//       <Stack.Screen
-//         name="Auth"
-//         options={{
-//           headerTitle: () => undefined,
-//           headerTransparent: true,
-//           headerShown: false,
-//           gestureEnabled: false,
-//         }}
-//         component={AuthScreen}
-//       />
-//     </Stack.Navigator>
-//   );
-// }
+function AuthStack() {
+  const { t } = useTranslation();
+  return (
+    <Stack.Navigator
+      initialRouteName={'Auth'}
+      screenOptions={{
+        ...DefaultHeaderStyle(),
+        ...headerLogo(),
+        ...DefaultStackHeaderStyle(),
+        ...HeaderBackIcon(),
+      }}>
+      <Stack.Screen
+        name="Auth"
+        options={{
+          headerTitle: () => undefined,
+          headerTransparent: true,
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+        component={AuthScreen}
+      />
+    </Stack.Navigator>
+  );
+}
 
-// function DiagnosticStack() {
-//   const { t } = useTranslation();
+function DiagnosticStack() {
+  const { t } = useTranslation();
 
-//   return (
-//     <Stack.Navigator initialRouteName={'Diagnostic'}>
-//       <Stack.Screen
-//         name="Diagnostic"
-//         options={{
-//           headerTitle: t(LangKeys.diagnostic),
-//           headerBackTitle: t(LangKeys.back),
-//         }}
-//         component={Diagnostic}
-//       />
-//       <Stack.Screen
-//         name="NetworkLogger"
-//         options={{
-//           headerTitle: t(LangKeys.network_logger),
-//         }}
-//         component={Logger}
-//       />
-//     </Stack.Navigator>
-//   );
-// }
-// function PaymentStack() {
-//   return (
-//     <Stack.Navigator
-//       screenOptions={{
-//         ...DefaultHeaderStyle(),
-//         ...headerLogo(),
-//       }}
-//       initialRouteName="PaymentModal">
-//       <Stack.Screen name="PaymentResult" component={PaymentResultScreen} />
-//       <Stack.Screen
-//         name="PaymentModal"
-//         options={{
-//           animationEnabled: true,
-//           headerShown: false,
-//         }}
-//         component={PaymentModalScreen}
-//       />
-//     </Stack.Navigator>
-//   );
-// }
+  return (
+    <Stack.Navigator initialRouteName={'Diagnostic'}>
+      <Stack.Screen
+        name="Diagnostic"
+        options={{
+          headerTitle: t(LangKeys.diagnostic),
+          headerBackTitle: t(LangKeys.back),
+        }}
+        component={Diagnostic}
+      />
+      <Stack.Screen
+        name="NetworkLogger"
+        options={{
+          headerTitle: t(LangKeys.network_logger),
+        }}
+        component={Logger}
+      />
+    </Stack.Navigator>
+  );
+}
+function PaymentStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        ...DefaultHeaderStyle(),
+        ...headerLogo(),
+      }}
+      initialRouteName="PaymentModal">
+      <Stack.Screen name="PaymentResult" component={PaymentResultScreen} />
+      <Stack.Screen
+        name="PaymentModal"
+        options={{
+          animationEnabled: true,
+          headerShown: false,
+        }}
+        component={PaymentModalScreen}
+      />
+    </Stack.Navigator>
+  );
+}
 
 const RootStack = createStackNavigator();
 
@@ -300,7 +301,7 @@ const RootStackScreen: React.FC<RootStackProps> = props => {
     <RootStack.Navigator
       headerMode="none"
       screenOptions={{ animationEnabled: false, headerBackTitle: ' ' }}
-      mode="modal">
+      >
       {props.activeStack === 'splash' ? (
         <RootStack.Screen name="Splash" component={Splash} />
       ) : props.activeStack === 'auth' ? (
@@ -308,8 +309,8 @@ const RootStackScreen: React.FC<RootStackProps> = props => {
       ) : (
         <RootStack.Screen name="TabStack" component={TabStack} />
       )}
-      <RootStack.Screen name="DiagnosticStack" component={DiagnosticStack} />
-      <RootStack.Screen name="PaymentStack" component={PaymentStack} />
+      {/* <RootStack.Screen name="DiagnosticStack" component={DiagnosticStack} />
+      <RootStack.Screen name="PaymentStack" component={PaymentStack} /> */}
     </RootStack.Navigator>
   );
 };

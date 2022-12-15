@@ -1,0 +1,38 @@
+export const MIN_LENGTH = {
+  SMS_OTP: 6,
+  PASSWORD: 18,
+  TCKN: 11,
+  PHONE_NUMBER_LAST_FOUR: 4,
+  CARD_PIN: 4,
+  SECURITY_ANSWER: 3,
+  MAGIC_QUESTION: 3,
+  USERNAME: 5,
+};
+
+export const MAX_LENGTH = {
+  SECURITY_ANSWER: 25,
+  TCKN: 11,
+  PHONE_NUMBER_LAST_FOUR: 4,
+  PHONE_NUMBER: 10,
+  PASSWORD: 8,
+  SMS_OTP: 6,
+  CUSTOMER_NUMBER: 10,
+  PRICE: 11,
+  AMOUNT: 11,
+  QUANTITY: 9,
+  DECIMAL: 2,
+};
+
+export const DELIVERY_DATE = {
+  START_TIME: '00:00',
+  END_TIME: '19:00',
+  CONTROL_TIME: '14:30',
+};
+export const GROWER_DELIVERY_HOURS = {
+  START_TIME: '08:00',
+  END_TIME: '14:30',
+};
+export const IMAGE_LIMIT = {
+  MAX: 5,
+  OFFER: 3,
+};
