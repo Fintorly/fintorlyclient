@@ -11,11 +11,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NavigatorContext, { StackType } from './NavigatorContext';
 import { useTranslation } from 'react-i18next';
 import {
-  DefaultHeaderStyle,
-  DefaultStackHeaderStyle,
-  HeaderBackIcon,
-  headerLogo,
-  renderTabBarIcon,
   NavButton,
 } from './NavigatorHelper';
 import { Alert, Keyboard, Linking } from 'react-native';
@@ -35,8 +30,8 @@ function FeedStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        ...DefaultHeaderStyle(),
-        ...headerLogo(),
+        // ...DefaultHeaderStyle(),
+        // ...headerLogo(),
       }}
       initialRouteName="Feed">
       <Stack.Screen
@@ -55,7 +50,7 @@ function FavoritesStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        ...DefaultHeaderStyle(),
+        // ...DefaultHeaderStyle(),
       }}>
       <Stack.Screen
         name="Favorites"
@@ -67,13 +62,13 @@ function FavoritesStack() {
       <Stack.Screen
         name="AdvertiseDetail"
         component={AdvertiseDetailScreen}
-        options={{
-          headerTitle: t(LangKeys.advertise_detail),
-          ...NavButton({
-            position: 'right',
-            iconType: IconType.Favorite,
-          }),
-        }}
+        // options={{
+        //   headerTitle: t(LangKeys.advertise_detail),
+        //   ...NavButton({
+        //     position: 'right',
+        //     iconType: IconType.Favorite,
+        //   }),
+        // }}
       />
     </Stack.Navigator>
   );
@@ -84,7 +79,7 @@ function AdvertiseStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        ...DefaultHeaderStyle(),
+        // ...DefaultHeaderStyle(),
       }}>
       <Stack.Screen
         name="CreateAdvertiseLanding"
@@ -101,7 +96,7 @@ function MyAdsStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        ...DefaultHeaderStyle(),
+        // ...DefaultHeaderStyle(),
       }}>
       <Stack.Screen
         name="MyAds"
@@ -120,15 +115,15 @@ function MyAccountStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        ...DefaultHeaderStyle(),
+        // ...DefaultHeaderStyle(),
       }}
       initialRouteName="MyAccount">
       <Stack.Screen
         name="MyAccount"
         component={MyAccountScreen}
-        options={{
-          headerTitle: t(LangKeys.my_account),
-        }}
+        // options={{
+        //   headerTitle: t(LangKeys.my_account),
+        // }}
         initialParams={{
           userInfo: userInfo,
           shouldRefresh: true,
@@ -299,9 +294,8 @@ type RootStackProps = {
 const RootStackScreen: React.FC<RootStackProps> = props => {
   return (
     <RootStack.Navigator
-      headerMode="none"
-      screenOptions={{ animationEnabled: false, headerBackTitle: ' ' }}
-      >
+      screenOptions={{ animationEnabled: false, headerBackTitle: ' ', headerShown: false }}
+    >
       {props.activeStack === 'splash' ? (
         <RootStack.Screen name="Splash" component={Splash} />
       ) : props.activeStack === 'auth' ? (
@@ -309,8 +303,6 @@ const RootStackScreen: React.FC<RootStackProps> = props => {
       ) : (
         <RootStack.Screen name="TabStack" component={TabStack} />
       )}
-      {/* <RootStack.Screen name="DiagnosticStack" component={DiagnosticStack} />
-      <RootStack.Screen name="PaymentStack" component={PaymentStack} /> */}
     </RootStack.Navigator>
   );
 };

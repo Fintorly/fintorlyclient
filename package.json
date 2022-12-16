@@ -4,28 +4,28 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "android-fast": "react-native run-android --active-arch-only ",
     "ios": "react-native run-ios --udid='7080AC0E-2D09-4EA7-9240-BA1FEB9F9354' ",
-    "start": "npx react-native start --reset-cache",
+    "start": "react-native start",
     "test": "jest",
-    "lint": "eslint .",
-    "generate-mobile-api": "node fetchMobileSwagger.js && npx @openapitools/openapi-generator-cli generate --skip-validate-spec -i ./swaggerMobileApi.json -g typescript-axios -o ./src/Mobile-Api/Swagger -Dio.swagger.parser.util.RemoteUrl.trustAll=true -Dio.swagger.v3.parser.util.RemoteUrl.trustAll=true && prettier --write ./src/Mobile-Api/Swagger/api.ts",
-    "generate-auth-api": "node fetchAuthSwagger.js && npx @openapitools/openapi-generator-cli generate --skip-validate-spec -i ./swaggerAuthApi.json -g typescript-axios -o ./src/Auth-Api/Swagger -Dio.swagger.parser.util.RemoteUrl.trustAll=true -Dio.swagger.v3.parser.util.RemoteUrl.trustAll=true && prettier --write ./src/Auth-Api/Swagger/api.ts",
-    "generate-finalization-api": "node fetchFinalizationSwagger.js && npx @openapitools/openapi-generator-cli generate --skip-validate-spec -i ./swaggerFinalizationApi.json -g typescript-axios -o ./src/Finalization-Api/Swagger -Dio.swagger.parser.util.RemoteUrl.trustAll=true -Dio.swagger.v3.parser.util.RemoteUrl.trustAll=true && prettier --write ./src/Finalization-Api/Swagger/api.ts",
-    "postinstall": "cd ios && pod install"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "@react-navigation/bottom-tabs": "^6.5.1",
+    "@react-native-community/masked-view": "^0.1.11",
+    "@react-navigation/bottom-tabs": "^6.5.2",
     "@react-navigation/native": "^6.1.1",
-    "@react-navigation/routers": "^6.1.6",
-    "@react-navigation/stack": "^6.3.9",
+    "@react-navigation/stack": "^6.3.10",
+    "lottie-ios": "3.4.1",
+    "lottie-react-native": "^5.1.4",
     "react": "18.1.0",
     "react-i18next": "^12.1.1",
     "react-native": "0.70.6",
     "react-native-config": "^1.4.11",
     "react-native-gesture-handler": "^2.8.0",
+    "react-native-reanimated": "^2.13.0",
+    "react-native-responsive-screen": "^1.4.2",
     "react-native-safe-area-context": "^4.4.1",
-    "react-native-screens": "^3.18.2",
-    "react-native-shake": "^5.1.1"
+    "react-native-screens": "^3.18.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

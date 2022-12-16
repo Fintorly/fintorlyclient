@@ -1,6 +1,6 @@
 import React, {createContext, ReactElement} from 'react';
-import {default as themeLight} from './zgtp-theme-light';
-import {default as themeDark} from './zgtp-theme-dark';
+import {default as themeLight} from './finto-theme-light';
+import {default as themeDark} from './finto-theme-dark';
 
 type Themes = 'light' | 'dark';
 
@@ -15,12 +15,12 @@ type ThemeValues = {
 };
 
 const ThemeContext = createContext<ThemeValues>({
-  selectedTheme: 'light',
+  selectedTheme: 'dark',
   toggleTheme: () => {},
 });
 
 export const ThemeProvider = ({children}: {children: ReactElement}) => {
-  const [selectedTheme, setSelectedTheme] = React.useState<Themes>('light');
+  const [selectedTheme, setSelectedTheme] = React.useState<Themes>('dark');
 
   const toggleTheme = () => {
     const nextTheme = selectedTheme === 'light' ? 'dark' : 'light';

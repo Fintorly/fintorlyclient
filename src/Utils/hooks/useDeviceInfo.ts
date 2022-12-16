@@ -1,4 +1,4 @@
-import {Constants} from '~/Common/types/deviceManager';
+import {Constants} from '../../Common/types/deviceManager';
 import DeviceManager from 'react-native-device-info';
 import {useEffect, useState} from 'react';
 import {Platform} from 'react-native';

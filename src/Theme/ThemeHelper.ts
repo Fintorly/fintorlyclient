@@ -1,12 +1,12 @@
-import BaseStyle from '~/Styles/BaseStyle';
-import {navigationStyles} from '~/Styles/CustomStyles/NavigationStyles';
-import {componentStyles} from '~/Styles/CustomStyles/ComponentStyles';
-import {layoutStyles} from '~/Styles/CustomStyles/LayoutStyles';
+import BaseStyle from '../Styles/BaseStyle';
+import {navigationStyles} from '../Styles/CustomStyles/NavigationStyles';
+import {componentStyles} from '../Styles/CustomStyles/ComponentStyles';
+import {layoutStyles} from '../Styles/CustomStyles/LayoutStyles';
 import React, {useEffect, useState} from 'react';
 import ThemeContext from './ThemeContext';
 import {useTheme} from '@ui-kitten/components';
 import {ThemeType} from './ThemeTypes';
-import {default as mapping} from './zgtp-mapping.json';
+import {default as mapping} from './finto-mapping.json';
 
 export const themeMapping = mapping;
 

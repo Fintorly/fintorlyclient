@@ -1,6 +1,6 @@
-import BaseStyle from '~/Styles/BaseStyle';
-export {ThemeKeys} from './ThemeKeys';
-import {default as mapping} from './zgtp-mapping.json';
+import BaseStyle from '../Styles/BaseStyle';
+export { ThemeKeys } from './ThemeKeys';
+import { default as mapping } from './finto-mapping.json';
 
 export type ThemeType = {
   mapping: typeof mapping;
