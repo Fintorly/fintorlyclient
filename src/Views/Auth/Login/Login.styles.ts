@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {useStyle} from '~/Theme/ThemeHelper';
-import {ThemeKeys} from '~/Theme/ThemeTypes';
+import {useStyle} from '../../../Theme/ThemeHelper';
+import {ThemeKeys} from '../../../Theme/ThemeTypes';
 
 export function DefaultStyles() {
   const {layoutStyles, themeVariables} = useStyle();

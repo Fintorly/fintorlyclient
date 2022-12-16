@@ -1,8 +1,8 @@
-import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useStyle } from '../Theme/ThemeHelper';
-import { Animated, Easing } from 'react-native';
+import React, {  useImperativeHandle, useRef, useState } from 'react';
+import { Animated } from 'react-native';
 import Lottie from 'lottie-react-native';
+import { useStyle } from '../Theme/ThemeHelper';
+import { ThemeKeys } from '../Theme/ThemeKeys';
 
 
 export type HudRefType = {
@@ -39,25 +39,14 @@ const Hud = React.forwardRef(({ }, ref?: React.Ref<HudRefType>) => {
   };
 
   const animationProgress = useRef(new Animated.Value(0))
-
-  useEffect(() => {
-    Animated.timing(animationProgress.current, {
-      toValue: 1,
-      duration: 5000,
-      easing: Easing.linear,
-      useNativeDriver: false
-    }).start();
-  }, [])
-
-  console.log(shouldShowHud())
+  const { themeVariables } = useStyle();
   return shouldShowHud() ? (
     <Lottie
-      style={
-        {
-          flex: 1,
-        }
-      }
-      source={require('../Assets/9844-loading-40-paperplane.json')}
+      style={{
+        flex: 1,
+        backgroundColor: themeVariables.eva[ThemeKeys.colorHudBackground]
+      }}
+      source={require('../Assets/animation.json')}
       progress={animationProgress.current}
       autoPlay
       loop

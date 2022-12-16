@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {ThemeType, ThemeKeys} from '~/Theme/ThemeTypes';
+import {ThemeType, ThemeKeys} from '../../Theme/ThemeTypes';
 export const componentStyles = (theme: ThemeType, eva: Record<string, any>) => {
   return StyleSheet.create({
     lineHeightBase: {

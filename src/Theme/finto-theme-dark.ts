@@ -1,5 +1,6 @@
 export default {
   'color-primary-background': '#1A1A1A',
+  'color-hud-background': '#1a1a1a90',
   'color-primary-white': '#FFFFFF',
   'color-primary-gray': '#262626',
   'color-primary-orange': '#FF4B26',

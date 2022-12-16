@@ -1,6 +1,9 @@
-import React, {createContext, ReactElement} from 'react';
-import {default as themeLight} from './finto-theme-light';
-import {default as themeDark} from './finto-theme-dark';
+import React, { createContext, ReactElement } from 'react';
+import { default as themeLight } from './finto-theme-light';
+import { default as themeDark } from './finto-theme-dark';
+import { Appearance } from 'react-native';
+
+const colorScheme = Appearance.getColorScheme();
 
 type Themes = 'light' | 'dark';
 
@@ -15,12 +18,12 @@ type ThemeValues = {
 };
 
 const ThemeContext = createContext<ThemeValues>({
-  selectedTheme: 'dark',
-  toggleTheme: () => {},
+  selectedTheme: colorScheme === 'dark' ? 'dark' : 'light',
+  toggleTheme: () => { },
 });
 
-export const ThemeProvider = ({children}: {children: ReactElement}) => {
-  const [selectedTheme, setSelectedTheme] = React.useState<Themes>('dark');
+export const ThemeProvider = ({ children }: { children: ReactElement }) => {
+  const [selectedTheme, setSelectedTheme] = React.useState<Themes>(`${colorScheme === 'dark' ? 'dark' : 'light'}`);
 
   const toggleTheme = () => {
     const nextTheme = selectedTheme === 'light' ? 'dark' : 'light';
@@ -28,7 +31,7 @@ export const ThemeProvider = ({children}: {children: ReactElement}) => {
   };
 
   return (
-    <ThemeContext.Provider value={{selectedTheme, toggleTheme}}>
+    <ThemeContext.Provider value={{ selectedTheme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

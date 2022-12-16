@@ -25,7 +25,7 @@ const getCustomStyles = (evaTheme: Record<string, any>) => {
     componentStyles: componentStyles(themeVariables, evaTheme),
     navigationStyles: navigationStyles(themeVariables, evaTheme),
     layoutStyles: layoutStyles(themeVariables, evaTheme),
-    themeVariables,
+    themeVariables
   };
 };
 

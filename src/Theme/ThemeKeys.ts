@@ -10,6 +10,7 @@ enum ThemeKeyVariables {
   colorNeutralWhite200,
   colorNeutralRed,
   colorNeutralGreen,
+  colorHudBackground
 }
 
 Object.entries(ThemeKeyVariables).forEach((k) => {
@@ -23,6 +24,7 @@ type ThemeDictionary = { [key in keyof typeof ThemeKeyVariables]: string };
 
 export const ThemeKeys: ThemeDictionary = {
   colorPrimaryBackground: 'color-primary-background',
+  colorHudBackground: 'color-hud-background',
   colorPrimaryWhite: 'color-primary-white',
   colorPrimaryGray: 'color-primary-gray',
   colorPrimaryOrange: 'color-primary-orange',

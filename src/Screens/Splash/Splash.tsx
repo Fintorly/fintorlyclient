@@ -1,21 +1,17 @@
-import { Animated, Easing, SafeAreaView, StyleSheet } from 'react-native'
-import React, { useEffect, useRef } from 'react'
+import { SafeAreaView, StyleSheet, Image } from 'react-native'
+import React from 'react'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import AnimatedLottieView from 'lottie-react-native';
+import { hideHud, showHud } from '../../Hud/HudHelper';
+import { ThemeKeys } from '../../Theme/ThemeKeys';
+import { useStyle } from '../../Theme/ThemeHelper';
 
 type Props = {}
 
 const Splash = (props: Props) => {
-
+    const { themeVariables } = useStyle();
     return (
-        <SafeAreaView style={styles.container} >
-            {/* <Image style={styles.logo} source={require('../../Assets/logo/fintologo.png')} /> */}
-            <AnimatedLottieView
-                style={styles.logo}
-                source={require('../../Assets/9844-loading-40-paperplane.json')}
-                autoPlay
-                loop={true}
-            />
+        <SafeAreaView style={[{ backgroundColor: themeVariables.eva[ThemeKeys.colorPrimaryBackground] }, styles.container]} >
+            <Image style={styles.logo} source={require('../../Assets/logo/fintologo.png')} />
         </SafeAreaView>
     )
 }
@@ -27,7 +23,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#1e1e1e',
     },
     logo: {
         width: wp('20%'),
