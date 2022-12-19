@@ -1,5 +1,5 @@
 import DataProvider from './DataProvider';
-import {Language} from '../Utils/i18n';
+import {Language} from '../Utils/Enum';
 
 interface CommonDataHolder {
   language?: Language;

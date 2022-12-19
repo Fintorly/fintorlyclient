@@ -35,7 +35,6 @@ export const GoToLogin = () => {
   Reset('Login');
 };
 
-
 export const GoToAuth = () => {
   Reset('Auth');
 };

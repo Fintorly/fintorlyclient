@@ -22,10 +22,14 @@ import {
 import { navigationRef } from './NavigatorRefs';
 import RNShake from 'react-native-shake';
 import Splash from '../Screens/Splash/Splash';
+import { useStyle } from '../Theme/ThemeHelper';
+import { ThemeKeys } from '../Theme/ThemeKeys';
+import HomeScreen from '../Screens/Stack/HomeScreen';
+import { LangKeys } from '../Locale/LangKeys';
 
 const Stack = createStackNavigator();
 
-function FeedStack() {
+function HomeStack() {
   const { t } = useTranslation();
   return (
     <Stack.Navigator
@@ -33,13 +37,14 @@ function FeedStack() {
         // ...DefaultHeaderStyle(),
         // ...headerLogo(),
       }}
-      initialRouteName="Feed">
+      initialRouteName="Home">
       <Stack.Screen
-        name="OfferResult"
-        options={{
-          headerTitle: t(LangKeys.screen_offer_transaction_result),
-        }}
-        component={OfferResultScreen}
+        name="Home"
+        // options={{
+        //   headerTitle: t(LangKeys.screen_offer_transaction_result),
+        // }}
+        options={{ headerShown: true, }}
+        component={HomeScreen}
       />
     </Stack.Navigator>
   );
@@ -62,13 +67,13 @@ function FavoritesStack() {
       <Stack.Screen
         name="AdvertiseDetail"
         component={AdvertiseDetailScreen}
-        // options={{
-        //   headerTitle: t(LangKeys.advertise_detail),
-        //   ...NavButton({
-        //     position: 'right',
-        //     iconType: IconType.Favorite,
-        //   }),
-        // }}
+      // options={{
+      //   headerTitle: t(LangKeys.advertise_detail),
+      //   ...NavButton({
+      //     position: 'right',
+      //     iconType: IconType.Favorite,
+      //   }),
+      // }}
       />
     </Stack.Navigator>
   );
@@ -91,6 +96,7 @@ function AdvertiseStack() {
     </Stack.Navigator>
   );
 }
+
 function MyAdsStack() {
   const { t } = useTranslation();
   return (
@@ -116,6 +122,7 @@ function MyAccountStack() {
     <Stack.Navigator
       screenOptions={{
         // ...DefaultHeaderStyle(),
+        headerShown: false,
       }}
       initialRouteName="MyAccount">
       <Stack.Screen
@@ -137,80 +144,33 @@ function TabStack() {
   const [keyboardShown, setKeyboardShown] = useState(false);
   const { themeVariables, navigationStyles } = useStyle();
   const { t } = useTranslation();
-  const { userInfo } = useContext(UserContext);
-  useEffect(() => {
-    Keyboard.addListener('keyboardDidShow', handleKeyboardShown);
-    Keyboard.addListener('keyboardDidHide', handleKeyboardHidden);
-    return () => {
-      Keyboard.removeListener('keyboardDidShow', handleKeyboardShown);
-      Keyboard.removeListener('keyboardDidHide', handleKeyboardHidden);
-    };
-  }, []);
+  // const { userInfo } = useContext(UserContext);
+  // useEffect(() => {
+  //   Keyboard.addListener('keyboardDidShow', handleKeyboardShown);
+  //   Keyboard.addListener('keyboardDidHide', handleKeyboardHidden);
+  //   return () => {
+  //     Keyboard.removeListener('keyboardDidShow', handleKeyboardShown);
+  //     Keyboard.removeListener('keyboardDidHide', handleKeyboardHidden);
+  //   };
+  // }, []);
 
   const handleKeyboardShown = () => setKeyboardShown(true);
   const handleKeyboardHidden = () => setKeyboardShown(false);
 
   return (
     <Tab.Navigator
-      tabBarOptions={{
-        keyboardHidesTabBar: true,
-        activeTintColor: themeVariables.eva[ThemeKeys.colorPrimary],
-        inactiveTintColor: themeVariables.eva[ThemeKeys.colorInk],
-        labelStyle: navigationStyles.tabBarLabel,
-        iconStyle: navigationStyles.navBarIcon,
-        style: {
-          bottom: keyboardShown ? -25 : 0,
-        },
+      screenOptions={{
+        tabBarHideOnKeyboard: true,
+        // activeTintColor: themeVariables.eva[ThemeKeys.colorNeutralDarkBlue],
+        // inactiveTintColor: themeVariables.eva[ThemeKeys.colorNeutralDarkBlue],
+        headerShown: false,
       }}>
       <Tab.Screen
-        name="FeedStack"
-        component={FeedStack}
+        name="HomeScreen"
+        component={HomeStack}
         options={{
-          tabBarLabel: t(LangKeys.feed),
-          tabBarIcon: ({ color }) => renderTabBarIcon(IconType.Feed, color),
-        }}
-      />
-      <Tab.Screen
-        name="FavoritesStack"
-        component={FavoritesStack}
-        options={{
-          tabBarLabel: t(LangKeys.favorite),
-          tabBarIcon: ({ color }) => renderTabBarIcon(IconType.Heart, color),
-        }}
-      />
-      <Tab.Screen
-        name="AdvertiseStack"
-        listeners={() => ({
-          tabPress: e => {
-            if (!hasMainCustomerApproveDocument(userInfo)) {
-              e.preventDefault();
-            }
-          },
-        })}
-        component={AdvertiseStack}
-        options={{
-          tabBarLabel: t(LangKeys.create_advertise),
-          tabBarIcon: ({ color }) => (
-            <TabBarButton color={color} icon={IconType.Plus} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="MyAdsStack"
-        component={MyAdsStack}
-        options={{
-          tabBarLabel: t(LangKeys.my_advertises),
-          tabBarIcon: ({ color }) => renderTabBarIcon(IconType.Advertises, color),
-        }}
-      />
-
-      <Tab.Screen
-        name="MyAccountStack"
-        component={MyAccountStack}
-        options={{
-          unmountOnBlur: false,
-          tabBarLabel: t(LangKeys.my_account),
-          tabBarIcon: ({ color }) => renderTabBarIcon(IconType.Profile, color),
+          tabBarLabel: t(LangKeys.home_stack),
+          // tabBarIcon: ({ color }) => renderTabBarIcon(IconType.Feed, color),
         }}
       />
     </Tab.Navigator>
@@ -297,12 +257,16 @@ const RootStackScreen: React.FC<RootStackProps> = props => {
       screenOptions={{ animationEnabled: false, headerBackTitle: ' ', headerShown: false }}
     >
       {props.activeStack === 'splash' ? (
-        <RootStack.Screen name="Splash" component={Splash} />
-      ) : props.activeStack === 'auth' ? (
-        <RootStack.Screen name="AuthStack" component={AuthStack} />
-      ) : (
-        <RootStack.Screen name="TabStack" component={TabStack} />
-      )}
+        <RootStack.Screen name="Splash" component={Splash} options={{
+          animationEnabled: true,
+        }} />
+      )
+        // : props.activeStack === 'auth' ? (
+        //   <RootStack.Screen name="AuthStack" component={AuthStack} />
+        // ) 
+        : (
+          <RootStack.Screen name="TabStack" component={TabStack} />
+        )}
     </RootStack.Navigator>
   );
 };

@@ -1,12 +1,14 @@
 import i18n from 'i18next';
-import {initReactI18next} from 'react-i18next';
+import { initReactI18next } from 'react-i18next';
 import En from '../Locale/En';
 import Tr from '../Locale/Tr';
+import Nl from '../Locale/Nl';
 import moment from 'moment';
 import 'moment/locale/tr';
 import 'moment/locale/en-gb';
+import 'moment/locale/nl';
 import CommonDataProvider from '../Providers/CommonDataProvider';
-import {Language} from './Enum';
+import { Language } from './Enum';
 
 export enum InterpolationType {
   DECIMAL_STRING = 'DECIMAL_STRING',
@@ -32,7 +34,12 @@ i18n
         tr: {
           translation: Tr,
         },
+        nl: {
+          translation: Nl,
+        }
       },
+      compatibilityJSON: 'v3',
+      debug:true,
       lng: language,
       fallbackLng: Language.tr,
       interpolation: {
@@ -92,9 +99,9 @@ export const decimalString = (value: number) => {
 export const parseLocaleNumber = (value: string): number => {
   return value
     ? Number(
-        i18n.t(`{{value,${InterpolationType.PARSE_LOCALE_NUMBER}}}`, {
-          value,
-        }),
-      )
+      i18n.t(`{{value,${InterpolationType.PARSE_LOCALE_NUMBER}}}`, {
+        value,
+      }),
+    )
     : 0;
 };

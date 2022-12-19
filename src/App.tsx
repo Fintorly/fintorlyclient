@@ -12,9 +12,10 @@ import { NavigatorProvider } from './Navigator/NavigatorContext';
 import { RegisterProvider } from './Context/RegisterContext';
 import { hudRef } from './Hud/HudHelper';
 import { UserProvider } from './Context/UserContext';
-import { themeMapping } from './Theme/ThemeHelper';
+import { themeMapping, useStyle } from './Theme/ThemeHelper';
 import { navigatorRef } from './Navigator/NavigatorRefs';
-import {Appearance} from 'react-native';
+import { Appearance } from 'react-native';
+import { ThemeKeys } from './Theme/ThemeKeys';
 // import { Channel } from './Api/Enums';
 // import { useTranslation } from 'react-i18next';
 // import { Language } from './Utils/Enum';
@@ -49,6 +50,7 @@ const App = () => {
     //   }
 
     const colorScheme = Appearance.getColorScheme();
+
     return (
         <>
             {/* <IconRegistry icons={ZGTarimIconPack} /> */}
@@ -67,7 +69,8 @@ const App = () => {
                                         theme={{
                                             ...eva[props.selectedTheme],
                                             ...theme[props.selectedTheme!],
-                                        }}>
+                                        }}
+                                        >
                                         <>
                                             <Navigator ref={navigatorRef} />
                                             <Hud ref={hudRef} />

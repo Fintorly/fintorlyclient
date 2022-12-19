@@ -1,5 +1,5 @@
 import {ImageURISource} from 'react-native';
-import {LoginUserType} from '~/Common/enums/user';
+import {LoginUserType} from '../Common/enums/user';
 import DataProvider from './DataProvider';
 
 interface CustomerDataHolder {

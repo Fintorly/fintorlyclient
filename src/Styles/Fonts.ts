@@ -7,20 +7,25 @@ enum FONT_WEIGHT {
   Thin = 'Thin',
   Ultra = 'Ultra',
   XLight = 'XLight',
+  ExtraBold = 'ExtraBold',
+  ExtraLight = 'ExtraLight',
+  Regular = 'Regular',
+  SemiBold = 'SemiBold',
 }
 
 const font = (weight: FONT_WEIGHT) => {
-  const defaultFontName = 'GothamNarrow';
+  const defaultFontName = 'Inter';
   return [defaultFontName, weight].join('-');
 };
 
 export default {
   black: font(FONT_WEIGHT.Black),
   bold: font(FONT_WEIGHT.Bold),
-  book: font(FONT_WEIGHT.Book),
+  extraBold: font(FONT_WEIGHT.ExtraBold),
+  extraLight: font(FONT_WEIGHT.ExtraLight),
   light: font(FONT_WEIGHT.Light),
   medium: font(FONT_WEIGHT.Medium),
+  regular: font(FONT_WEIGHT.Regular),
+  semiBold: font(FONT_WEIGHT.SemiBold),
   thin: font(FONT_WEIGHT.Thin),
-  ultra: font(FONT_WEIGHT.Ultra),
-  xLight: font(FONT_WEIGHT.XLight),
 };

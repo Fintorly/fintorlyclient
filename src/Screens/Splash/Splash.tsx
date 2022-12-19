@@ -1,17 +1,35 @@
-import { SafeAreaView, StyleSheet, Image } from 'react-native'
-import React from 'react'
+import { SafeAreaView, StyleSheet, Animated } from 'react-native'
+import React, { useContext, useEffect, useRef } from 'react'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { hideHud, showHud } from '../../Hud/HudHelper';
 import { ThemeKeys } from '../../Theme/ThemeKeys';
 import { useStyle } from '../../Theme/ThemeHelper';
+import NavigatorContext from '../../Navigator/NavigatorContext';
+import AnimatedLottieView from 'lottie-react-native';
 
 type Props = {}
 
 const Splash = (props: Props) => {
     const { themeVariables } = useStyle();
+    const { setActiveStack } = useContext(NavigatorContext);
+    const animationProgress = useRef(new Animated.Value(0))
+    useEffect(() => {
+        setTimeout(() => {
+            setActiveStack('auth');
+        }, 1800);
+    }, []);
     return (
         <SafeAreaView style={[{ backgroundColor: themeVariables.eva[ThemeKeys.colorPrimaryBackground] }, styles.container]} >
-            <Image style={styles.logo} source={require('../../Assets/logo/fintologo.png')} />
+            <AnimatedLottieView
+                style={{
+                    flex: 1,
+                    backgroundColor: themeVariables.eva[ThemeKeys.colorHudBackground],
+                }}
+                source={require('../../Assets/splashscreen.json')}
+                progress={animationProgress.current}
+                autoPlay
+                loop
+            />
         </SafeAreaView>
     )
 }

@@ -1,5 +1,9 @@
 enum LangKeys {
   about_app,
+  home_stack,
+  settings_stack,
+  about_stack,
+  home
 }
 
 Object.entries(LangKeys).forEach(k => {

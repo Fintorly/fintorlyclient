@@ -1,4 +1,4 @@
-import React, { createContext, ReactElement } from 'react';
+import React, { createContext, ReactElement, useCallback, useEffect } from 'react';
 import { default as themeLight } from './finto-theme-light';
 import { default as themeDark } from './finto-theme-dark';
 import { Appearance } from 'react-native';
@@ -22,8 +22,15 @@ const ThemeContext = createContext<ThemeValues>({
   toggleTheme: () => { },
 });
 
+
 export const ThemeProvider = ({ children }: { children: ReactElement }) => {
   const [selectedTheme, setSelectedTheme] = React.useState<Themes>(`${colorScheme === 'dark' ? 'dark' : 'light'}`);
+
+  useEffect(() => {
+    Appearance.addChangeListener(({ colorScheme }) => {
+      setSelectedTheme(colorScheme === 'dark' ? 'dark' : 'light');
+    });
+  }, []);
 
   const toggleTheme = () => {
     const nextTheme = selectedTheme === 'light' ? 'dark' : 'light';

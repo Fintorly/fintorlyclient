@@ -3,6 +3,7 @@ import { Animated } from 'react-native';
 import Lottie from 'lottie-react-native';
 import { useStyle } from '../Theme/ThemeHelper';
 import { ThemeKeys } from '../Theme/ThemeKeys';
+import { widthPercentageToDP } from 'react-native-responsive-screen';
 
 
 export type HudRefType = {
@@ -44,9 +45,9 @@ const Hud = React.forwardRef(({ }, ref?: React.Ref<HudRefType>) => {
     <Lottie
       style={{
         flex: 1,
-        backgroundColor: themeVariables.eva[ThemeKeys.colorHudBackground]
+        backgroundColor: themeVariables.eva[ThemeKeys.colorHudBackground],
       }}
-      source={require('../Assets/animation.json')}
+      source={require('../Assets/loading.json')}
       progress={animationProgress.current}
       autoPlay
       loop

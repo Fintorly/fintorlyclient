@@ -1,12 +1,12 @@
 import BaseStyle from '../Styles/BaseStyle';
-import {navigationStyles} from '../Styles/CustomStyles/NavigationStyles';
-import {componentStyles} from '../Styles/CustomStyles/ComponentStyles';
-import {layoutStyles} from '../Styles/CustomStyles/LayoutStyles';
-import React, {useEffect, useState} from 'react';
+import { navigationStyles } from '../Styles/CustomStyles/NavigationStyles';
+import { componentStyles } from '../Styles/CustomStyles/ComponentStyles';
+import { layoutStyles } from '../Styles/CustomStyles/LayoutStyles';
+import React, { useEffect, useState } from 'react';
 import ThemeContext from './ThemeContext';
-import {useTheme} from '@ui-kitten/components';
-import {ThemeType} from './ThemeTypes';
-import {default as mapping} from './finto-mapping.json';
+import { useTheme } from '@ui-kitten/components';
+import { ThemeType } from './ThemeTypes';
+import { default as mapping } from './finto-mapping.json';
 
 export const themeMapping = mapping;
 
@@ -30,7 +30,7 @@ const getCustomStyles = (evaTheme: Record<string, any>) => {
 };
 
 export function useStyle() {
-  const {selectedTheme} = React.useContext(ThemeContext);
+  const { selectedTheme } = React.useContext(ThemeContext);
   const evaTheme = useTheme();
   const [activeTheme, setActiveTheme] = useState(getCustomStyles(evaTheme));
   useEffect(() => {
