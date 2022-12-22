@@ -11,4 +11,10 @@ export default {
   'color-neutral-white-200': '#F5F8FD',
   'color-neutral-red': '#D90429',
   'color-neutral-green': '#34C759',
+  'color-input-background': '#F5F8FD',
+  'color-input-placeholder': '#808191',
+  'color-input-title': '#000000',
+  'color-input-icon': '#000000',
+  'color-input-error': '#D90429',
+  'color-input-success': '#34C759',
 };

@@ -10,7 +10,13 @@ enum ThemeKeyVariables {
   colorNeutralWhite200,
   colorNeutralRed,
   colorNeutralGreen,
-  colorHudBackground
+  colorHudBackground,
+  colorInputBackground,
+  colorInputPlaceholder,
+  colorInputTitle,
+  colorInputIcon,
+  colorInputError,
+  colorInputSuccess,
 }
 
 Object.entries(ThemeKeyVariables).forEach((k) => {
@@ -35,4 +41,10 @@ export const ThemeKeys: ThemeDictionary = {
   colorNeutralWhite200: 'color-neutral-white-200',
   colorNeutralRed: 'color-neutral-red',
   colorNeutralGreen: 'color-neutral-green',
+  colorInputBackground: 'color-input-background',
+  colorInputPlaceholder: 'color-input-placeholder',
+  colorInputTitle: 'color-input-title',
+  colorInputIcon: 'color-input-icon',
+  colorInputError: 'color-input-error',
+  colorInputSuccess: 'color-input-success',
 };

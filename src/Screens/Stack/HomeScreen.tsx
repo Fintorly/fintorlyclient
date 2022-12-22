@@ -18,9 +18,27 @@ const HomeScreen = (props: Props) => {
             <Text style={{
                 color: themeVariables.eva[ThemeKeys.colorPrimaryWhite]
             }} >{t(LangKeys["home_stack"])} </Text>
-            <Input  />
-            <Input  />
-            <Input  />
+            <Input placeHolder='yavsakyunus09 ' inputTitle='Kullanıcı Adı' hasIcon
+                returnKeyType='next'
+                hasSuccess
+            />
+            <Input placeHolder='test' inputTitle='Test' clearTextOnFocus
+                secureTextEntry
+                hasSuccess
+            />
+            <Input placeHolder='test' inputTitle='Test' clearTextOnFocus
+                secureTextEntry
+                hasError
+            />
+            <Input placeHolder='test' inputTitle='Test'
+                hasError
+                hasIcon
+            />
+            <Input placeHolder='test' inputTitle='Test' clearTextOnFocus
+                hasIcon
+            />
+            <Input placeHolder='test' inputTitle='Test' clearTextOnFocus
+            />
         </View>
     )
 }
