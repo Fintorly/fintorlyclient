@@ -20,6 +20,7 @@ export type InputPropsType = InputProps & {
   | 'phone-pad';
   returnKeyType?: 'search' | 'done' | 'go' | 'next' | 'send';
   hasError?: boolean;
+  errorText?: string;
   hasSuccess?: boolean;
   showSoftInputOnFocus?: boolean;
   hasIcon?: boolean;
@@ -46,6 +47,7 @@ export const Input = React.forwardRef<UIInput, InputPropsType>(
       inputTitle,
       secureTextEntry,
       hasError,
+      errorText,
       // style,
       ...restProps
     },
@@ -69,7 +71,9 @@ export const Input = React.forwardRef<UIInput, InputPropsType>(
             {...restProps}
             style={[styles.textInput, {
               color: hasSuccess ? themeVariables.themeVariables.eva[ThemeKeys.colorInputSuccess] : hasError ? themeVariables.themeVariables.eva[ThemeKeys.colorInputError] : themeVariables.themeVariables.eva[ThemeKeys.colorInputTitle],
-              fontFamily: themeVariables.themeVariables.fonts.bold
+              fontFamily: themeVariables.themeVariables.fonts.bold,
+              // fontSize: secureTextEntry ? 40 : wp("3%"),
+              // letterSpacing: secureTextEntry ? -9: 0,
             }]}
             placeholder={placeHolder}
             placeholderTextColor={themeVariables.themeVariables.eva[ThemeKeys.colorInputPlaceholder]}
@@ -77,7 +81,7 @@ export const Input = React.forwardRef<UIInput, InputPropsType>(
               onChange && onChange(event.nativeEvent.text, event)
             }
             clearTextOnFocus={clearTextOnFocus}
-            secureTextEntry={secureTextEntry}
+            secureTextEntry={secureTextEntry && !showIcon}
             status={hasError ? 'error' : status ?? 'basic'}
             onKeyPress={(event) => {
               onKeyDown && onKeyDown(event.nativeEvent.key, event);
@@ -94,8 +98,7 @@ export const Input = React.forwardRef<UIInput, InputPropsType>(
           }
         </View>
         {
-          hasError ? <Text
-            style={[styles.errorText, { color: themeVariables.themeVariables.eva[ThemeKeys.colorInputError] }]}>error</Text> : null
+          hasError ? <Text style={[styles.errorText, { color: themeVariables.themeVariables.eva[ThemeKeys.colorInputError] }]}>{errorText}</Text> : null
         }
       </View>
     );
@@ -134,6 +137,7 @@ const styles = StyleSheet.create({
     fontSize: wp('5%'),
   },
   errorText: {
+    fontSize: wp('3%'),
   },
   secureText: {
     alignSelf: 'center',

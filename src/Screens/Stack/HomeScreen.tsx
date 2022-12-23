@@ -22,13 +22,14 @@ const HomeScreen = (props: Props) => {
                 returnKeyType='next'
                 hasSuccess
             />
-            <Input placeHolder='test' inputTitle='Test' clearTextOnFocus
+            <Input placeHolder='*****' inputTitle='Test' clearTextOnFocus
                 secureTextEntry
                 hasSuccess
             />
-            <Input placeHolder='test' inputTitle='Test' clearTextOnFocus
+            <Input placeHolder='******' inputTitle='Test' clearTextOnFocus
                 secureTextEntry
                 hasError
+                errorText='hatalı la babba!'
             />
             <Input placeHolder='test' inputTitle='Test'
                 hasError
