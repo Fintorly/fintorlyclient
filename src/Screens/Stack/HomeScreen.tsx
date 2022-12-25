@@ -4,6 +4,7 @@ import { ThemeKeys } from '../../Theme/ThemeKeys'
 import { useStyle } from '../../Theme/ThemeHelper'
 import { useTranslation } from 'react-i18next'
 import { LangKeys } from '../../Locale/LangKeys'
+import Input from '../../Components/Input'
 
 type Props = {}
 

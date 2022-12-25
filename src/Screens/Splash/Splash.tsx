@@ -12,11 +12,12 @@ type Props = {}
 
 const Splash = (props: Props) => {
     const { themeVariables } = useStyle();
-    const { setActiveStack } = useContext(NavigatorContext);
     const animationProgress = useRef(new Animated.Value(0))
+    const {setActiveStack} = useContext(NavigatorContext)
     useEffect(() => {
         setTimeout(() => {
-            GoToOnBoardOne()
+            // GoToOnBoardOne()
+            setActiveStack("auth")
         }, 1600);
     }, []);
     return (

@@ -1,6 +1,6 @@
 import React, {createContext, ReactElement} from 'react';
 
-export type StackType = 'splash' | 'auth' | 'postLogin';
+export type StackType = 'splash' | 'auth' | 'postLogin' | 'home' ;
 
 type NavigatorValues = {
   activeStack: StackType;

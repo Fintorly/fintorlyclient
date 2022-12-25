@@ -72,8 +72,6 @@ export const Input = React.forwardRef<UIInput, InputPropsType>(
             style={[styles.textInput, {
               color: hasSuccess ? themeVariables.themeVariables.eva[ThemeKeys.colorInputSuccess] : hasError ? themeVariables.themeVariables.eva[ThemeKeys.colorInputError] : themeVariables.themeVariables.eva[ThemeKeys.colorInputTitle],
               fontFamily: themeVariables.themeVariables.fonts.bold,
-              // fontSize: secureTextEntry ? 40 : wp("3%"),
-              // letterSpacing: secureTextEntry ? -9: 0,
             }]}
             placeholder={placeHolder}
             placeholderTextColor={themeVariables.themeVariables.eva[ThemeKeys.colorInputPlaceholder]}
@@ -138,7 +136,7 @@ const styles = StyleSheet.create({
   inputComponent: {
     width: wp('90%'),
     alignSelf: 'center',
-    marginVertical: hp('1%'),
+    marginVertical: hp('2%'),
     display: 'flex',
   },
   input: {

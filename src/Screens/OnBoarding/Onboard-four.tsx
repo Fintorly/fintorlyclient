@@ -1,5 +1,5 @@
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useStyle } from '../../Theme/ThemeHelper';
 import { ThemeKeys } from '../../Theme/ThemeKeys';
 import Icon from '../../Styles/Icon';
@@ -11,12 +11,14 @@ import Button from '../../Components/Button';
 import { useTranslation } from 'react-i18next';
 import { LangKeys } from '../../Locale/LangKeys';
 import { GoToHome } from '../../Navigator/Router';
+import NavigatorContext from '../../Navigator/NavigatorContext';
 
 type Props = {}
 
 const OnboardFour = (props: Props) => {
     const themeVariables = useStyle();
     const { t } = useTranslation()
+    const { setActiveStack } = useContext(NavigatorContext);
     return (
         <SafeAreaView
             style={[styles.container, { backgroundColor: themeVariables.themeVariables.eva[ThemeKeys.colorPrimaryBackground] }]}
@@ -66,7 +68,9 @@ const OnboardFour = (props: Props) => {
             <View style={styles.button}>
                 <Button
                     text={t(LangKeys.lets_start_button)}
-                    onPress={() => { GoToHome() }}
+                    onPress={() => {
+                        setActiveStack("auth")
+                       }}
                 />
             </View>
 

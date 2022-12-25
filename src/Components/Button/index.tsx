@@ -13,6 +13,7 @@ type Props = {
     textStyle?: any
     width?: any
     onPress?: () => void
+    disabled?: boolean
 }
 
 const Button = (props: Props) => {
@@ -26,10 +27,11 @@ const Button = (props: Props) => {
                 borderRadius: 10,
             }]}
             onPress={props.onPress}
+            disabled={props.disabled}
         >
             <Text
                 style={[props.textStyle, {
-                    color: themeVariables.themeVariables.eva[ThemeKeys.colorInputTitle],
+                    color: props.disabled ? themeVariables.themeVariables.eva[ThemeKeys.colorNeutralGray400] : themeVariables.themeVariables.eva[ThemeKeys.colorInputTitle],
                     fontFamily: themeVariables.themeVariables.fonts.extraBold,
                     fontSize: wp('4.5%'),
                     textAlign: 'center',

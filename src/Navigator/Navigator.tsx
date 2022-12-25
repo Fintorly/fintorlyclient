@@ -30,6 +30,7 @@ import OnboardOne from '../Screens/OnBoarding/Onboard-one';
 import OnboardTwo from '../Screens/OnBoarding/Onboard-two';
 import OnboardThree from '../Screens/OnBoarding/Onboard-three';
 import OnboardFour from '../Screens/OnBoarding/Onboard-four';
+import Register from '../Screens/Auth/Register';
 
 const Stack = createStackNavigator();
 
@@ -187,10 +188,10 @@ function AuthStack() {
     <Stack.Navigator
       initialRouteName={'Auth'}
       screenOptions={{
-        ...DefaultHeaderStyle(),
-        ...headerLogo(),
-        ...DefaultStackHeaderStyle(),
-        ...HeaderBackIcon(),
+        // ...DefaultHeaderStyle(),
+        // ...headerLogo(),
+        // ...DefaultStackHeaderStyle(),
+        // ...HeaderBackIcon(),
       }}>
       <Stack.Screen
         name="Auth"
@@ -200,7 +201,7 @@ function AuthStack() {
           headerShown: false,
           gestureEnabled: false,
         }}
-        component={AuthScreen}
+        component={Register}
       />
     </Stack.Navigator>
   );
@@ -229,6 +230,7 @@ function DiagnosticStack() {
     </Stack.Navigator>
   );
 }
+
 function PaymentStack() {
   return (
     <Stack.Navigator
@@ -266,30 +268,19 @@ const RootStackScreen: React.FC<RootStackProps> = props => {
           animationTypeForReplace: 'push',
         }} />
       )
-        // : props.activeStack === 'auth' ? (
-        //   <RootStack.Screen name="AuthStack" component={AuthStack} />
-        // ) 
-        : (
-          <RootStack.Screen name="TabStack" component={TabStack} />
-        )}
+        : props.activeStack === 'auth' ? (
+          <RootStack.Screen name="AuthStack" component={AuthStack} />
+        )
+          : props.activeStack === "home" ? (
+            <RootStack.Screen name="TabStack" component={TabStack} />
+          ) :
+            null
+      }
       <RootStack.Screen name="TabStack" component={TabStack} />
-      <RootStack.Screen name="OnBoardOne" component={OnboardOne} options={{
-        animationTypeForReplace: 'push',
-      }} />
-      <RootStack.Screen name="OnBoardTwo" component={OnboardTwo} options={{
-        animationEnabled: true,
-        animationTypeForReplace: 'push',
-      }} />
-      <RootStack.Screen name="OnBoardThree" component={OnboardThree}
-        options={{
-          animationEnabled: true,
-          animationTypeForReplace: 'push',
-        }} />
-      <RootStack.Screen name="OnBoardFour" component={OnboardFour}
-        options={{
-          animationEnabled: true,
-          animationTypeForReplace: 'push',
-        }} />
+      <RootStack.Screen name="OnBoardOne" component={OnboardOne} />
+      <RootStack.Screen name="OnBoardTwo" component={OnboardTwo} />
+      <RootStack.Screen name="OnBoardThree" component={OnboardThree} />
+      <RootStack.Screen name="OnBoardFour" component={OnboardFour} />
     </RootStack.Navigator>
   );
 };
