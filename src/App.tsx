@@ -16,6 +16,7 @@ import { themeMapping, useStyle } from './Theme/ThemeHelper';
 import { navigatorRef } from './Navigator/NavigatorRefs';
 import { Appearance } from 'react-native';
 import { ThemeKeys } from './Theme/ThemeKeys';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
 // import { Channel } from './Api/Enums';
 // import { useTranslation } from 'react-i18next';
 // import { Language } from './Utils/Enum';
@@ -53,7 +54,7 @@ const App = () => {
 
     return (
         <>
-            {/* <IconRegistry icons={ZGTarimIconPack} /> */}
+              <IconRegistry icons={EvaIconsPack} />
             <StatusBar barStyle={
                 colorScheme === 'dark' ? 'light-content' : 'dark-content'
             } />

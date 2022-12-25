@@ -5,11 +5,9 @@ export type RootStackParamList = {
   Auth: undefined;
   About: undefined;
   Information: undefined;
-  Home: HomeProps;
   TabStack: TabStackProps;
 };
 
-export type HomeProps = {};
 
 export type TabStackProps = {
   Home: undefined;

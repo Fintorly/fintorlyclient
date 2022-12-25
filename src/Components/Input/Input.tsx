@@ -8,6 +8,8 @@ import {
 import { Input as UIInput } from '@ui-kitten/components';
 import { useStyle } from '../../Theme/ThemeHelper';
 import { ThemeKeys } from '../../Theme/ThemeKeys';
+import Icon from "../../Styles/Icon"
+
 
 export type InputPropsType = InputProps & {
   secureTextEntry?: boolean;
@@ -23,7 +25,6 @@ export type InputPropsType = InputProps & {
   errorText?: string;
   hasSuccess?: boolean;
   showSoftInputOnFocus?: boolean;
-  hasIcon?: boolean;
   placeHolder: string;
   inputTitle: string;
   clearTextOnFocus?: boolean;
@@ -41,7 +42,6 @@ export const Input = React.forwardRef<UIInput, InputPropsType>(
       status,
       keyboardType,
       clearTextOnFocus,
-      hasIcon,
       hasSuccess,
       placeHolder,
       inputTitle,
@@ -88,14 +88,43 @@ export const Input = React.forwardRef<UIInput, InputPropsType>(
               onKeyUp && onKeyUp(event.nativeEvent.key, event);
             }}
           />
-          {hasIcon &&
-            <Text style={[styles.inputIcon, { color: hasSuccess ? themeVariables.themeVariables.eva[ThemeKeys.colorInputSuccess] : hasError ? themeVariables.themeVariables.eva[ThemeKeys.colorInputError] : themeVariables.themeVariables.eva[ThemeKeys.colorInputIcon] }]} >&</Text>
-          }
-          {secureTextEntry &&
-            <Text
-              onPress={() => { setShowIcon(!showIcon) }}
-              style={[styles.secureText, { color: hasSuccess ? themeVariables.themeVariables.eva[ThemeKeys.colorInputSuccess] : hasError ? themeVariables.themeVariables.eva[ThemeKeys.colorInputError] : themeVariables.themeVariables.eva[ThemeKeys.colorInputIcon] }]}  >{showIcon ? "@ " : "#"}</Text>
-          }
+          <View style={styles.iconArea} >
+            {
+              hasSuccess ?
+                <Icon
+                  name='check'
+                  style={[styles.inputIcon, {
+                    marginRight: wp('-4%'),
+                  }]}
+                  loop={false}
+                  autoPlay={true}
+                  width={wp('7%')}
+                  height={hp('7%')}
+
+                />  : hasError &&
+                <Icon
+                  name='wrong'
+                  style={styles.inputIcon}
+                  loop={false}
+                  autoPlay={true}
+                  width={wp('4%')}
+                  height={hp('4%')}
+                />
+            }
+            {secureTextEntry &&
+              <Icon
+                onPress={() => { setShowIcon(!showIcon) }}
+                name={showIcon ? 'eyeoff' : 'eye'}
+                style={[styles.inputIcon, {
+                  paddingLeft: wp('2%'),
+                }]}
+                loop={true}
+                autoPlay={true}
+                width={wp('4%')}
+                height={hp('4%')}
+              />
+            }
+          </View>
         </View>
         {
           hasError ? <Text style={[styles.errorText, { color: themeVariables.themeVariables.eva[ThemeKeys.colorInputError] }]}>{errorText}</Text> : null
@@ -118,9 +147,17 @@ const styles = StyleSheet.create({
     marginVertical: hp('0.2%'),
     flexDirection: 'row',
     paddingHorizontal: wp('3%'),
+    display: 'flex',
+    justifyContent: 'space-between',
   },
   textInput: {
-    width: wp('79%'),
+    display: 'flex',
+    width: wp('60%'),
+  },
+  iconArea: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   inputTitle: {
     marginBottom: hp('0.5%'),
@@ -128,8 +165,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   inputIcon: {
-    alignSelf: 'center',
     fontSize: wp('5%'),
+    justifyContent: 'flex-end',
   },
   inputIconSuccess: {
     alignSelf: 'center',

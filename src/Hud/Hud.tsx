@@ -3,8 +3,6 @@ import { Animated } from 'react-native';
 import Lottie from 'lottie-react-native';
 import { useStyle } from '../Theme/ThemeHelper';
 import { ThemeKeys } from '../Theme/ThemeKeys';
-import { widthPercentageToDP } from 'react-native-responsive-screen';
-
 
 export type HudRefType = {
   show: () => void;

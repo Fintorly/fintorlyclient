@@ -1,10 +1,9 @@
-import {CommonActions, StackActions} from '@react-navigation/native';
-import {Linking} from 'react-native';
+import { CommonActions, StackActions } from '@react-navigation/native';
+import { Linking } from 'react-native';
 import Config from 'react-native-config';
-import {navigationRef, navigatorRef} from './NavigatorRefs';
-import {
-  HomeProps,
-} from './NavigatorTypes';
+import { navigationRef, navigatorRef } from './NavigatorRefs';
+// import {
+// } from './NavigatorTypes';
 
 export const Navigate = async (name: string, params?: any) => {
   if (await navigatorRef.current?.shouldBlockNavigation(name, params)) {
@@ -60,8 +59,21 @@ export const GoToAbout = () => {
   Navigate('About');
 };
 
-export const GoToHome = (passProps: HomeProps) => {
-  Navigate('Home', passProps);
+export const GoToHome = () => {
+  Navigate('TabStack');
+};
+
+export const GoToOnBoardOne = () => {
+  Navigate('OnBoardOne');
+};
+export const GoToOnBoardTwo = () => {
+  Navigate('OnBoardTwo');
+};
+export const GoToOnBoardThree = () => {
+  Navigate('OnBoardThree');
+};
+export const GoToOnBoardFour = () => {
+  Navigate('OnBoardFour');
 };
 
 export const GoToMyOffer = () => {

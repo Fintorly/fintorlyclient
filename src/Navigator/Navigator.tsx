@@ -26,6 +26,10 @@ import { useStyle } from '../Theme/ThemeHelper';
 import { ThemeKeys } from '../Theme/ThemeKeys';
 import HomeScreen from '../Screens/Stack/HomeScreen';
 import { LangKeys } from '../Locale/LangKeys';
+import OnboardOne from '../Screens/OnBoarding/Onboard-one';
+import OnboardTwo from '../Screens/OnBoarding/Onboard-two';
+import OnboardThree from '../Screens/OnBoarding/Onboard-three';
+import OnboardFour from '../Screens/OnBoarding/Onboard-four';
 
 const Stack = createStackNavigator();
 
@@ -259,6 +263,7 @@ const RootStackScreen: React.FC<RootStackProps> = props => {
       {props.activeStack === 'splash' ? (
         <RootStack.Screen name="Splash" component={Splash} options={{
           animationEnabled: true,
+          animationTypeForReplace: 'push',
         }} />
       )
         // : props.activeStack === 'auth' ? (
@@ -267,6 +272,24 @@ const RootStackScreen: React.FC<RootStackProps> = props => {
         : (
           <RootStack.Screen name="TabStack" component={TabStack} />
         )}
+      <RootStack.Screen name="TabStack" component={TabStack} />
+      <RootStack.Screen name="OnBoardOne" component={OnboardOne} options={{
+        animationTypeForReplace: 'push',
+      }} />
+      <RootStack.Screen name="OnBoardTwo" component={OnboardTwo} options={{
+        animationEnabled: true,
+        animationTypeForReplace: 'push',
+      }} />
+      <RootStack.Screen name="OnBoardThree" component={OnboardThree}
+        options={{
+          animationEnabled: true,
+          animationTypeForReplace: 'push',
+        }} />
+      <RootStack.Screen name="OnBoardFour" component={OnboardFour}
+        options={{
+          animationEnabled: true,
+          animationTypeForReplace: 'push',
+        }} />
     </RootStack.Navigator>
   );
 };

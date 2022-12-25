@@ -6,6 +6,7 @@ import { ThemeKeys } from '../../Theme/ThemeKeys';
 import { useStyle } from '../../Theme/ThemeHelper';
 import NavigatorContext from '../../Navigator/NavigatorContext';
 import AnimatedLottieView from 'lottie-react-native';
+import { GoToOnBoardOne } from '../../Navigator/Router';
 
 type Props = {}
 
@@ -15,8 +16,8 @@ const Splash = (props: Props) => {
     const animationProgress = useRef(new Animated.Value(0))
     useEffect(() => {
         setTimeout(() => {
-            setActiveStack('auth');
-        }, 1800);
+            GoToOnBoardOne()
+        }, 1600);
     }, []);
     return (
         <SafeAreaView style={[{ backgroundColor: themeVariables.eva[ThemeKeys.colorPrimaryBackground] }, styles.container]} >
