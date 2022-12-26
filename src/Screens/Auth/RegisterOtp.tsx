@@ -18,13 +18,14 @@ interface Props {
     username: string;
     email: string;
     password: string;
+    code: string;
 }
 
 const RegisterOtp = (props: Props) => {
     const themeVariables = useStyle();
     const { t } = useTranslation();
     const navigation = useNavigation();
-
+    console.log(props.code)
     return (
         <SafeAreaView style={[styles.container, {
             backgroundColor: themeVariables.themeVariables.eva[ThemeKeys.colorPrimaryBackground]
@@ -49,10 +50,14 @@ const RegisterOtp = (props: Props) => {
                             fontFamily: themeVariables.themeVariables.fonts.medium,
                             fontSize: wp('4.5%'),
                         }} > {props.route.params.email} </Text>
-                     e-posta adresine gelen 5 haneli doğrulama kodunu gir.}</Text>
+                        e-posta adresine gelen 5 haneli doğrulama kodunu gir.</Text>
                 </View>
 
-                <OtpInput />
+                <OtpInput
+                    hasTimer
+                // hasError
+                // code={props.code}
+                />
 
                 <View style={styles.changeMailArea} >
                     <Text
@@ -65,7 +70,7 @@ const RegisterOtp = (props: Props) => {
                         E-posta adresin hatalı mı?
                     </Text>
                     <Text
-                        onPress={() => {navigation.goBack()}}
+                        onPress={() => { navigation.goBack() }}
                         style={{
                             color: themeVariables.themeVariables.eva[ThemeKeys.colorInputTitle],
                             fontFamily: themeVariables.themeVariables.fonts.medium,

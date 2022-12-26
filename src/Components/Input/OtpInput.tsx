@@ -8,14 +8,21 @@ import {
 import { useStyle } from '../../Theme/ThemeHelper';
 import { ThemeKeys } from '../../Theme/ThemeKeys';
 import { REGISTER_OTP_COUNTDOWN } from '../../Helper/Constants';
+import { GoToHome } from '../../Navigator/Router';
+import { useNavigation } from '@react-navigation/native';
 
-type Props = {}
+type Props = {
+    hasTimer?: boolean;
+    timer?: number;
+    hasError?: boolean;
+}
 
 const OtpInput = (props: Props) => {
     const [timer, setTimer] = useState(REGISTER_OTP_COUNTDOWN)
     const [code, setCode] = useState('')
     const themeVariables = useStyle();
     const timerRef = useRef(timer);
+    const navigation = useNavigation();
 
     useEffect(() => {
         const timerId = setInterval(() => {
@@ -42,40 +49,45 @@ const OtpInput = (props: Props) => {
                 autoFocusOnLoad
                 selectionColor={themeVariables.themeVariables.eva[ThemeKeys.colorPrimaryOrange]}
                 codeInputFieldStyle={{
-                    borderColor: themeVariables.themeVariables.eva[ThemeKeys.colorInputBackground],
+                    borderColor: props.hasError ? themeVariables.themeVariables.eva[ThemeKeys.colorInputError] : themeVariables.themeVariables.eva[ThemeKeys.colorPrimaryBackground],
                     backgroundColor: themeVariables.themeVariables.eva[ThemeKeys.colorInputBackground],
                     width: wp('14%'),
                     height: hp('8%'),
                     borderRadius: 12,
                     fontSize: wp('5%'),
                     fontFamily: themeVariables.themeVariables.fonts.semiBold,
+                    color: props.hasError ? themeVariables.themeVariables.eva[ThemeKeys.colorInputError] : themeVariables.themeVariables.eva[ThemeKeys.colorPrimaryOrange],
                 }}
                 codeInputHighlightStyle={{
-                    borderColor: themeVariables.themeVariables.eva[ThemeKeys.colorPrimaryOrange],
+                    borderColor: props.hasError ? themeVariables.themeVariables.eva[ThemeKeys.colorInputError] : themeVariables.themeVariables.eva[ThemeKeys.colorPrimaryOrange],
                     backgroundColor: themeVariables.themeVariables.eva[ThemeKeys.colorPrimaryBackground],
                     fontFamily: themeVariables.themeVariables.fonts.extraBold,
                 }}
                 onCodeFilled={(code => {
-                    console.log(`Code is ${code}`)
+                    // console.log(`Code is ${code}`)
+                    navigation.navigate("TabStack")
                 })}
             />
-            <TouchableOpacity style={styles.countdown}
-                disabled={timer != 0 && true}
-                onPress={() => {
-                    timerRef.current = REGISTER_OTP_COUNTDOWN;
-                    setTimer(timerRef.current);
-                }
-                } >
-                <Text style={{
-                    color: timer != 0 ? themeVariables.themeVariables.eva[ThemeKeys.colorNeutralGray400] : themeVariables.themeVariables.eva[ThemeKeys.colorInputTitle],
-                    fontFamily: themeVariables.themeVariables.fonts.semiBold,
-                    fontSize: wp('4%'),
-                    marginTop: hp('1.5%'),
-                }}
-                >
-                    {timer} | Tekrar Gönder
-                </Text>
-            </TouchableOpacity>
+            {
+                props.hasTimer &&
+                <TouchableOpacity style={styles.countdown}
+                    disabled={timer != 0 && true}
+                    onPress={() => {
+                        timerRef.current = REGISTER_OTP_COUNTDOWN;
+                        setTimer(timerRef.current);
+                    }
+                    } >
+                    <Text style={{
+                        color: timer != 0 ? themeVariables.themeVariables.eva[ThemeKeys.colorNeutralGray400] : themeVariables.themeVariables.eva[ThemeKeys.colorInputTitle],
+                        fontFamily: themeVariables.themeVariables.fonts.semiBold,
+                        fontSize: wp('4%'),
+                        marginTop: hp('1.5%'),
+                    }}
+                    >
+                        {timer} | Tekrar Gönder
+                    </Text>
+                </TouchableOpacity>
+            }
         </View>
     )
 }
