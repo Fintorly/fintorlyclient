@@ -6,11 +6,18 @@ export type RootStackParamList = {
   About: undefined;
   Information: undefined;
   TabStack: TabStackProps;
+  RegisterOtp: RegisterOtpProps;
 };
 
 
 export type TabStackProps = {
   Home: undefined;
+};
+
+export type RegisterOtpProps = {
+  userName : string;
+  email : string;
+  password : string;
 };
 
 

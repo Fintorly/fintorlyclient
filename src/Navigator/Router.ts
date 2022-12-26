@@ -2,6 +2,7 @@ import { CommonActions, StackActions } from '@react-navigation/native';
 import { Linking } from 'react-native';
 import Config from 'react-native-config';
 import { navigationRef, navigatorRef } from './NavigatorRefs';
+import { RegisterOtpProps } from './NavigatorTypes';
 // import {
 // } from './NavigatorTypes';
 
@@ -61,6 +62,10 @@ export const GoToAbout = () => {
 
 export const GoToHome = () => {
   Navigate('TabStack');
+};
+
+export const GoToRegisterOtp = (passProps: RegisterOtpProps) => {
+  Navigate('RegisterOtp', passProps);
 };
 
 export const GoToOnBoardOne = () => {

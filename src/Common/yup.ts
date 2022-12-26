@@ -2,7 +2,7 @@
 import * as yup from 'yup';
 import {NumberSchema, StringSchema} from 'yup';
 import {isEmpty, isNil} from 'lodash';
-import {LangKeys} from '~/Locale/LangKeys';
+import {LangKeys} from '../Locale/LangKeys';
 
 export const mixed = {
   default: (values) => ({
@@ -210,6 +210,7 @@ function isValidTCKN() {
     },
   });
 }
+
 yup.addMethod<StringSchema>(yup.string, 'isValidTCKN', isValidTCKN);
 
 yup.setLocale(defaultMessages);

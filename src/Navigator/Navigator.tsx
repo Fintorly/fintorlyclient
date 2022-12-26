@@ -31,6 +31,7 @@ import OnboardTwo from '../Screens/OnBoarding/Onboard-two';
 import OnboardThree from '../Screens/OnBoarding/Onboard-three';
 import OnboardFour from '../Screens/OnBoarding/Onboard-four';
 import Register from '../Screens/Auth/Register';
+import RegisterOtp from '../Screens/Auth/RegisterOtp';
 
 const Stack = createStackNavigator();
 
@@ -186,7 +187,7 @@ function AuthStack() {
   const { t } = useTranslation();
   return (
     <Stack.Navigator
-      initialRouteName={'Auth'}
+      initialRouteName={'Register'}
       screenOptions={{
         // ...DefaultHeaderStyle(),
         // ...headerLogo(),
@@ -194,7 +195,7 @@ function AuthStack() {
         // ...HeaderBackIcon(),
       }}>
       <Stack.Screen
-        name="Auth"
+        name="Register"
         options={{
           headerTitle: () => undefined,
           headerTransparent: true,
@@ -202,6 +203,16 @@ function AuthStack() {
           gestureEnabled: false,
         }}
         component={Register}
+      />
+         <Stack.Screen
+        name="RegisterOtp"
+        options={{
+          headerTitle: () => undefined,
+          headerTransparent: true,
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+        component={RegisterOtp}
       />
     </Stack.Navigator>
   );

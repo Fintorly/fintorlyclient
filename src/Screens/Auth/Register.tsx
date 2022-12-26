@@ -1,13 +1,20 @@
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
+import { useForm } from 'react-hook-form';
 import { useStyle } from '../../Theme/ThemeHelper';
 import { ThemeKeys } from '../../Theme/ThemeKeys';
 import Input from '../../Components/Input';
 import Button from '../../Components/Button';
+import { MAX_CHARACTER, MIN_CHARACTER } from '../../Helper/Constants';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import yup from '../../Common/yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { LangKeys } from '../../Locale/LangKeys';
+import { useTranslation } from 'react-i18next';
+import { GoToRegisterOtp } from '../../Navigator/Router';
 
 interface RegisterForm {
     userName: string;
@@ -19,6 +26,64 @@ const Register = () => {
     const themeVariables = useStyle();
     const initialValues: RegisterForm = { userName: '', email: '', password: '' };
     const [values, setValues] = useState(initialValues);
+    const { t } = useTranslation();
+
+    const schema = yup.object().shape({
+        userName: yup
+            .string()
+            .required(t(LangKeys.customer_number_required))
+            .min(
+                MIN_CHARACTER.USERNAME,
+                t(LangKeys.validation_min_character, {
+                    number: MIN_CHARACTER.USERNAME,
+                }),
+            )
+            .max(
+                MAX_CHARACTER.CUSTOMER_NUMBER,
+                t(LangKeys.validation_max_character, {
+                    number: MAX_CHARACTER.CUSTOMER_NUMBER,
+                }),
+            ).max(
+                MAX_CHARACTER.USERNAME,
+                t(LangKeys.validation_max_character, {
+                    number: MAX_CHARACTER.USERNAME,
+                }),
+            ),
+        email: yup
+            .string()
+            .required(t(LangKeys.tckn_required))
+            .min(
+                MIN_CHARACTER.EMAIL,
+                t(LangKeys.validation_min_character, {
+                    number: MIN_CHARACTER.EMAIL,
+                }),
+            ).max(
+                MAX_CHARACTER.EMAIL,
+                t(LangKeys.validation_max_character, {
+                    number: MAX_CHARACTER.EMAIL,
+                }),
+            ).test('email', t(LangKeys.validation_email), (value) => {
+                if (value) {
+                    return value.includes('@');
+                }
+                return true;
+            }),
+        password: yup.string().required(t(LangKeys.password_login_required))
+            .min(MIN_CHARACTER.PASSWORD_LENGTH, t(LangKeys.validation_min_character, { number: MIN_CHARACTER.PASSWORD_LENGTH }))
+            .max(MAX_CHARACTER.PASSWORD_LENGTH, t(LangKeys.validation_max_character, { number: MAX_CHARACTER.PASSWORD_LENGTH }))
+    });
+
+    const defaultValues: RegisterForm = {
+        userName: __DEV__ ? 'fuykan37' : '',
+        email: __DEV__ ? 'furkanvsarda@gmail.com' : '',
+        password: __DEV__ ? 'Fuykan1041!' : '',
+    };
+
+    // const { handleSubmit, errors, control } = useForm({
+    //     resolver: yupResolver(schema),
+    //     defaultValues,
+    // });
+
 
     return (
         <SafeAreaView style={[styles.container, {
@@ -50,6 +115,7 @@ const Register = () => {
                     placeHolder='lavukyunus37'
                     value={values.userName}
                     onChange={(text) => setValues({ ...values, userName: text })}
+                // hasError={!!errors.userName}
                 />
                 <Input
                     inputTitle='E-Posta'
@@ -68,11 +134,13 @@ const Register = () => {
                 <View style={styles.buttonArea} >
                     <Button
                         text='Hesap Oluştur'
-                        onPress={() => { }}
+                        onPress={() => {
+                            GoToRegisterOtp(defaultValues)
+                        }}
                         style={{
                             paddingHorizontal: wp('14%'),
                         }}
-                        disabled={true}
+                    // disabled={true}
                     />
                     <Text
                         style={[styles.acceptText, {
