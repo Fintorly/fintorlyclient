@@ -57,7 +57,7 @@ const RegisterOtp = (props: Props) => {
                 <View style={styles.changeMailArea} >
                     <Text
                         style={{
-                            color: themeVariables.themeVariables.eva[ThemeKeys.colorInputTitle],
+                            color: themeVariables.themeVariables.eva[ThemeKeys.colorNeutralGray400],
                             fontFamily: themeVariables.themeVariables.fonts.medium,
                             fontSize: wp('4%'),
                         }}

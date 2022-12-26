@@ -16,7 +16,7 @@ export const FILE_SIZE_UNITS = [
   'YB',
 ];
 
-export const REGISTER_OTP_COUNTDOWN = 59;
+export const REGISTER_OTP_COUNTDOWN = 9;
 
 export const IOS_NAV_BAR_HEIGHT: number = 44;
 export const ANDROID_NAV_BAR_HEIGHT: number = 56;

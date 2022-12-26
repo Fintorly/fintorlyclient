@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 import {
     widthPercentageToDP as wp,
@@ -7,7 +7,6 @@ import {
 } from 'react-native-responsive-screen';
 import { useStyle } from '../../Theme/ThemeHelper';
 import { ThemeKeys } from '../../Theme/ThemeKeys';
-import CountDown from 'react-native-countdown-component';
 import { REGISTER_OTP_COUNTDOWN } from '../../Helper/Constants';
 
 type Props = {}
@@ -15,10 +14,23 @@ type Props = {}
 const OtpInput = (props: Props) => {
     const [timer, setTimer] = useState(REGISTER_OTP_COUNTDOWN)
     const [code, setCode] = useState('')
-    const [disabled, setDisabled] = useState(true)
     const themeVariables = useStyle();
-    const countdownRef = useRef(null);
-    console.log(timer)
+    const timerRef = useRef(timer);
+
+    useEffect(() => {
+        const timerId = setInterval(() => {
+            timerRef.current -= 1;
+            if (timerRef.current < 0) {
+                clearInterval(timerId);
+            } else {
+                setTimer(timerRef.current);
+            }
+        }, 1000);
+        return () => {
+            clearInterval(timerId);
+        };
+    }, [timerRef.current]);
+
     return (
         <View>
             <OTPInputView
@@ -48,28 +60,20 @@ const OtpInput = (props: Props) => {
                 })}
             />
             <TouchableOpacity style={styles.countdown}
-                disabled={disabled}
-                onPress={() => { setTimer(REGISTER_OTP_COUNTDOWN); }
+                disabled={timer != 0 && true}
+                onPress={() => {
+                    timerRef.current = REGISTER_OTP_COUNTDOWN;
+                    setTimer(timerRef.current);
+                }
                 } >
-                {/* <CountDown
-                    ref={countdownRef}
-                    until={timer}
-                    initialSeconds={REGISTER_OTP_COUNTDOWN}
-                    onChange={(time) => setTimer(time)}
-                    onFinish={() => setDisabled(false)}
-                    digitStyle={{ backgroundColor: themeVariables.themeVariables.eva[ThemeKeys.colorPrimaryBackground] }}
-                    digitTxtStyle={{ color: themeVariables.themeVariables.eva[ThemeKeys.colorNeutralGray400] }}
-                    timeToShow={['S']}
-                    timeLabels={{ "s": null }}
-                    size={wp('4.5%')}
-                /> */}
                 <Text style={{
-                    color: themeVariables.themeVariables.eva[ThemeKeys.colorNeutralGray400],
+                    color: timer != 0 ? themeVariables.themeVariables.eva[ThemeKeys.colorNeutralGray400] : themeVariables.themeVariables.eva[ThemeKeys.colorInputTitle],
                     fontFamily: themeVariables.themeVariables.fonts.semiBold,
                     fontSize: wp('4%'),
+                    marginTop: hp('1.5%'),
                 }}
                 >
-                    | Tekrar Gönder
+                    {timer} | Tekrar Gönder
                 </Text>
             </TouchableOpacity>
         </View>
