@@ -8,7 +8,6 @@ import {
 import { useStyle } from '../../Theme/ThemeHelper';
 import { ThemeKeys } from '../../Theme/ThemeKeys';
 import { REGISTER_OTP_COUNTDOWN } from '../../Helper/Constants';
-import { GoToHome } from '../../Navigator/Router';
 import { useNavigation } from '@react-navigation/native';
 
 type Props = {

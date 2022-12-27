@@ -13,24 +13,21 @@ type Props = {}
 const Splash = (props: Props) => {
     const { themeVariables } = useStyle();
     const animationProgress = useRef(new Animated.Value(0))
-    const {setActiveStack} = useContext(NavigatorContext)
-    useEffect(() => {
-        setTimeout(() => {
-            // GoToOnBoardOne()
-            setActiveStack("auth")
-        }, 1600);
-    }, []);
+    const { setActiveStack } = useContext(NavigatorContext)
+
     return (
         <SafeAreaView style={[{ backgroundColor: themeVariables.eva[ThemeKeys.colorPrimaryBackground] }, styles.container]} >
             <AnimatedLottieView
                 style={{
                     flex: 1,
-                    backgroundColor: themeVariables.eva[ThemeKeys.colorHudBackground],
                 }}
                 source={require('../../Assets/splashscreen.json')}
                 progress={animationProgress.current}
+                onAnimationFinish={() => {
+                    setActiveStack("auth")
+                }}
                 autoPlay
-                loop
+                loop={false}
             />
         </SafeAreaView>
     )
