@@ -10,6 +10,7 @@ type Props = {
     width: number
     height: number
     onPress?: () => void
+    disabled?: boolean
 }
 
 const Icon = (props: Props) => {
@@ -22,9 +23,11 @@ const Icon = (props: Props) => {
         bot: require('../Assets/icons/bot-onboard.json'),
         crypto: require('../Assets/icons/crypto-onboard.json'),
         news: require('../Assets/icons/news-onboard.json'),
+        mentor: require('../Assets/icons/mentor.json'),
+        investor: require('../Assets/icons/investor.json'),
     }
     return (
-        <TouchableOpacity style={props.style} onPress={props.onPress}   >
+        <TouchableOpacity style={props.style} onPress={props.onPress}   disabled={props.disabled}  >
             <AnimatedLottieView
                 style={{ width: props.width, height: props.height }}
                 source={icons[props.name]}

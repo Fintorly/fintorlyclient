@@ -32,6 +32,10 @@ import OnboardThree from '../Screens/OnBoarding/Onboard-three';
 import OnboardFour from '../Screens/OnBoarding/Onboard-four';
 import Register from '../Screens/Auth/Register';
 import RegisterOtp from '../Screens/Auth/RegisterOtp';
+import ChooseProfile from '../Screens/ChooseProfile';
+import CreateProfilePersonelInfo from '../Screens/CreateProfile/CreateProfilePersonelInfo';
+import CreateProfileCryptoInformation from '../Screens/CreateProfile/CreateProfileCryptoInformation';
+import CreateProfileFinish from '../Screens/CreateProfile/CreateProfileFinish';
 
 const Stack = createStackNavigator();
 
@@ -183,6 +187,26 @@ function TabStack() {
   );
 }
 
+
+function OnBoardStack() {
+  const { t } = useTranslation();
+  return (
+    <Stack.Navigator
+      initialRouteName={'Register'}
+      screenOptions={{
+        // ...DefaultHeaderStyle(),
+        // ...headerLogo(),
+        // ...DefaultStackHeaderStyle(),
+        // ...HeaderBackIcon(),
+      }}>
+      <Stack.Screen name="OnBoardOne" component={OnboardOne} />
+      <Stack.Screen name="OnBoardTwo" component={OnboardTwo} />
+      <Stack.Screen name="OnBoardThree" component={OnboardThree} />
+      <Stack.Screen name="OnBoardFour" component={OnboardFour} />
+    </Stack.Navigator>
+  );
+}
+
 function AuthStack() {
   const { t } = useTranslation();
   return (
@@ -204,7 +228,7 @@ function AuthStack() {
         }}
         component={Register}
       />
-         <Stack.Screen
+      <Stack.Screen
         name="RegisterOtp"
         options={{
           headerTitle: () => undefined,
@@ -217,6 +241,62 @@ function AuthStack() {
     </Stack.Navigator>
   );
 }
+
+function ProfileStack() {
+  const { t } = useTranslation();
+  return (
+    <Stack.Navigator
+      initialRouteName={'ChooseProfile'}
+      screenOptions={{
+        // ...DefaultHeaderStyle(),
+        // ...headerLogo(),
+        // ...DefaultStackHeaderStyle(),
+        // ...HeaderBackIcon(),
+      }}>
+      <Stack.Screen
+        name="ChooseProfile"
+        options={{
+          headerTitle: () => undefined,
+          headerTransparent: true,
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+        component={ChooseProfile}
+      />
+      <Stack.Screen
+        name="CreateProfilePersonelInfo"
+        options={{
+          headerTitle: () => undefined,
+          headerTransparent: true,
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+        component={CreateProfilePersonelInfo}
+      />
+      <Stack.Screen
+        name="CreateProfileCryptoInformation"
+        options={{
+          headerTitle: () => undefined,
+          headerTransparent: true,
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+        component={CreateProfileCryptoInformation}
+      />
+      <Stack.Screen
+        name="CreateProfileFinish"
+        options={{
+          headerTitle: () => undefined,
+          headerTransparent: true,
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+        component={CreateProfileFinish}
+      />
+    </Stack.Navigator>
+  );
+}
+
 
 function DiagnosticStack() {
   const { t } = useTranslation();
@@ -285,13 +365,13 @@ const RootStackScreen: React.FC<RootStackProps> = props => {
           : props.activeStack === "home" ? (
             <RootStack.Screen name="TabStack" component={TabStack} />
           ) :
-            null
+            props.activeStack === "profile" ? (
+              <RootStack.Screen name="ProfileStack" component={ProfileStack} />
+            ) :
+              null
       }
+      <RootStack.Screen name="OnBoardStack" component={OnBoardStack} />
       <RootStack.Screen name="TabStack" component={TabStack} />
-      <RootStack.Screen name="OnBoardOne" component={OnboardOne} />
-      <RootStack.Screen name="OnBoardTwo" component={OnboardTwo} />
-      <RootStack.Screen name="OnBoardThree" component={OnboardThree} />
-      <RootStack.Screen name="OnBoardFour" component={OnboardFour} />
     </RootStack.Navigator>
   );
 };

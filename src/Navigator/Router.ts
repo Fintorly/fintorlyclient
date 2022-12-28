@@ -2,7 +2,7 @@ import { CommonActions, StackActions } from '@react-navigation/native';
 import { Linking } from 'react-native';
 import Config from 'react-native-config';
 import { navigationRef, navigatorRef } from './NavigatorRefs';
-import { RegisterOtpProps } from './NavigatorTypes';
+import { CreateProfileCryptoInformationProps, CreateProfileFinishProps, CreateProfilePersonelInfoProps, RegisterOtpProps } from './NavigatorTypes';
 // import {
 // } from './NavigatorTypes';
 
@@ -91,3 +91,18 @@ export const GoToMyOffer = () => {
 export const PopToTop = () => {
   navigationRef.current?.dispatch(StackActions.popToTop());
 };
+
+
+//profile
+
+export const GoToCreateProfilePersonelInfo = (passProps: CreateProfilePersonelInfoProps) => {
+  Navigate('CreateProfilePersonelInfo', passProps);
+};
+
+export const GoToCreateProfileCryptoInformation = (passProps: CreateProfileCryptoInformationProps) => {
+  Navigate('CreateProfileCryptoInformation', passProps);
+};
+
+  export const GoToCreateProfileFinish = (passProps: CreateProfileFinishProps) => {
+    Navigate('CreateProfileFinish', passProps);
+  };

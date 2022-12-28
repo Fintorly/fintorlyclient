@@ -1,5 +1,5 @@
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form';
 import { useStyle } from '../../Theme/ThemeHelper';
 import { ThemeKeys } from '../../Theme/ThemeKeys';
@@ -13,6 +13,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import OtpInput from '../../Components/Input/OtpInput';
 import { useNavigation } from '@react-navigation/native';
+import NavigatorContext from '../../Navigator/NavigatorContext';
 
 interface Props {
     username: string;
@@ -25,7 +26,8 @@ const RegisterOtp = (props: Props) => {
     const themeVariables = useStyle();
     const { t } = useTranslation();
     const navigation = useNavigation();
-    console.log(props.code)
+    const { setActiveStack } = useContext(NavigatorContext);
+
     return (
         <SafeAreaView style={[styles.container, {
             backgroundColor: themeVariables.themeVariables.eva[ThemeKeys.colorPrimaryBackground]
@@ -55,8 +57,11 @@ const RegisterOtp = (props: Props) => {
 
                 <OtpInput
                     hasTimer
-                // hasError
-                // code={props.code}
+                    // hasError
+                    // code={props.code}
+                    onCodeFilled={(code) => {
+                        setActiveStack('profile');
+                     }}
                 />
 
                 <View style={styles.changeMailArea} >

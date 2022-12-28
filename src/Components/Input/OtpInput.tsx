@@ -8,12 +8,12 @@ import {
 import { useStyle } from '../../Theme/ThemeHelper';
 import { ThemeKeys } from '../../Theme/ThemeKeys';
 import { REGISTER_OTP_COUNTDOWN } from '../../Helper/Constants';
-import { useNavigation } from '@react-navigation/native';
 
 type Props = {
     hasTimer?: boolean;
     timer?: number;
     hasError?: boolean;
+    onCodeFilled?: (code: string) => void;
 }
 
 const OtpInput = (props: Props) => {
@@ -21,7 +21,6 @@ const OtpInput = (props: Props) => {
     const [code, setCode] = useState('')
     const themeVariables = useStyle();
     const timerRef = useRef(timer);
-    const navigation = useNavigation();
 
     useEffect(() => {
         const timerId = setInterval(() => {
@@ -62,10 +61,7 @@ const OtpInput = (props: Props) => {
                     backgroundColor: themeVariables.themeVariables.eva[ThemeKeys.colorPrimaryBackground],
                     fontFamily: themeVariables.themeVariables.fonts.extraBold,
                 }}
-                onCodeFilled={(code => {
-                    // console.log(`Code is ${code}`)
-                    navigation.navigate("TabStack")
-                })}
+                onCodeFilled={props.onCodeFilled}
             />
             {
                 props.hasTimer &&
