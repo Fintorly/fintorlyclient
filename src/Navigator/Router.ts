@@ -2,7 +2,7 @@ import { CommonActions, StackActions } from '@react-navigation/native';
 import { Linking } from 'react-native';
 import Config from 'react-native-config';
 import { navigationRef, navigatorRef } from './NavigatorRefs';
-import { CreateProfileCryptoInformationProps, CreateProfileFinishProps, CreateProfilePersonelInfoProps, RegisterOtpProps } from './NavigatorTypes';
+import { CreateProfileCryptoInformationProps, CreateProfileFinishProps, CreateProfileInterestedProps, CreateProfilePersonelInfoProps, RegisterOtpProps } from './NavigatorTypes';
 // import {
 // } from './NavigatorTypes';
 
@@ -103,6 +103,10 @@ export const GoToCreateProfileCryptoInformation = (passProps: CreateProfileCrypt
   Navigate('CreateProfileCryptoInformation', passProps);
 };
 
-  export const GoToCreateProfileFinish = (passProps: CreateProfileFinishProps) => {
-    Navigate('CreateProfileFinish', passProps);
-  };
+export const GoToCreateProfileInterested = (passProps: CreateProfileInterestedProps) => {
+  Navigate('CreateProfileInterested', passProps);
+};
+
+export const GoToCreateProfileFinish = (passProps: CreateProfileFinishProps) => {
+  Navigate('CreateProfileFinish', passProps);
+};

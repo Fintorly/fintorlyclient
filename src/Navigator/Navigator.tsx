@@ -5,27 +5,25 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import NavigatorContext, { StackType } from './NavigatorContext';
-import { useTranslation } from 'react-i18next';
-import {
-  NavButton,
-} from './NavigatorHelper';
-import { Alert, Keyboard, Linking } from 'react-native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import NavigatorContext, {StackType} from './NavigatorContext';
+import {useTranslation} from 'react-i18next';
+import {NavButton} from './NavigatorHelper';
+import {Alert, Keyboard, Linking} from 'react-native';
 import {
   isSecureLink,
   nonSecureDeepLinkMapper,
   secureDeepLinkMapper,
 } from './DeepLinkMapper';
-import { navigationRef } from './NavigatorRefs';
+import {navigationRef} from './NavigatorRefs';
 import RNShake from 'react-native-shake';
 import Splash from '../Screens/Splash/Splash';
-import { useStyle } from '../Theme/ThemeHelper';
-import { ThemeKeys } from '../Theme/ThemeKeys';
+import {useStyle} from '../Theme/ThemeHelper';
+import {ThemeKeys} from '../Theme/ThemeKeys';
 import HomeScreen from '../Screens/Stack/HomeScreen';
-import { LangKeys } from '../Locale/LangKeys';
+import {LangKeys} from '../Locale/LangKeys';
 import OnboardOne from '../Screens/OnBoarding/Onboard-one';
 import OnboardTwo from '../Screens/OnBoarding/Onboard-two';
 import OnboardThree from '../Screens/OnBoarding/Onboard-three';
@@ -36,24 +34,27 @@ import ChooseProfile from '../Screens/ChooseProfile';
 import CreateProfilePersonelInfo from '../Screens/CreateProfile/CreateProfilePersonelInfo';
 import CreateProfileCryptoInformation from '../Screens/CreateProfile/CreateProfileCryptoInformation';
 import CreateProfileFinish from '../Screens/CreateProfile/CreateProfileFinish';
+import CreateProfileInterested from '../Screens/CreateProfile/CreateProfileInterested';
 
 const Stack = createStackNavigator();
 
 function HomeStack() {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   return (
     <Stack.Navigator
-      screenOptions={{
-        // ...DefaultHeaderStyle(),
-        // ...headerLogo(),
-      }}
+      screenOptions={
+        {
+          // ...DefaultHeaderStyle(),
+          // ...headerLogo(),
+        }
+      }
       initialRouteName="Home">
       <Stack.Screen
         name="Home"
         // options={{
         //   headerTitle: t(LangKeys.screen_offer_transaction_result),
         // }}
-        options={{ headerShown: true, }}
+        options={{headerShown: true}}
         component={HomeScreen}
       />
     </Stack.Navigator>
@@ -61,12 +62,14 @@ function HomeStack() {
 }
 
 function FavoritesStack() {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   return (
     <Stack.Navigator
-      screenOptions={{
-        // ...DefaultHeaderStyle(),
-      }}>
+      screenOptions={
+        {
+          // ...DefaultHeaderStyle(),
+        }
+      }>
       <Stack.Screen
         name="Favorites"
         component={FavoritesScreen}
@@ -77,25 +80,27 @@ function FavoritesStack() {
       <Stack.Screen
         name="AdvertiseDetail"
         component={AdvertiseDetailScreen}
-      // options={{
-      //   headerTitle: t(LangKeys.advertise_detail),
-      //   ...NavButton({
-      //     position: 'right',
-      //     iconType: IconType.Favorite,
-      //   }),
-      // }}
+        // options={{
+        //   headerTitle: t(LangKeys.advertise_detail),
+        //   ...NavButton({
+        //     position: 'right',
+        //     iconType: IconType.Favorite,
+        //   }),
+        // }}
       />
     </Stack.Navigator>
   );
 }
 
 function AdvertiseStack() {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   return (
     <Stack.Navigator
-      screenOptions={{
-        // ...DefaultHeaderStyle(),
-      }}>
+      screenOptions={
+        {
+          // ...DefaultHeaderStyle(),
+        }
+      }>
       <Stack.Screen
         name="CreateAdvertiseLanding"
         component={CreateAdvertiseLandingScreen}
@@ -108,12 +113,14 @@ function AdvertiseStack() {
 }
 
 function MyAdsStack() {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   return (
     <Stack.Navigator
-      screenOptions={{
-        // ...DefaultHeaderStyle(),
-      }}>
+      screenOptions={
+        {
+          // ...DefaultHeaderStyle(),
+        }
+      }>
       <Stack.Screen
         name="MyAds"
         component={MyAdsScreen}
@@ -126,8 +133,8 @@ function MyAdsStack() {
 }
 
 function MyAccountStack() {
-  const { t } = useTranslation();
-  const { userInfo } = useContext(UserContext);
+  const {t} = useTranslation();
+  const {userInfo} = useContext(UserContext);
   return (
     <Stack.Navigator
       screenOptions={{
@@ -152,8 +159,8 @@ function MyAccountStack() {
 
 function TabStack() {
   const [keyboardShown, setKeyboardShown] = useState(false);
-  const { themeVariables, navigationStyles } = useStyle();
-  const { t } = useTranslation();
+  const {themeVariables, navigationStyles} = useStyle();
+  const {t} = useTranslation();
   // const { userInfo } = useContext(UserContext);
   // useEffect(() => {
   //   Keyboard.addListener('keyboardDidShow', handleKeyboardShown);
@@ -187,18 +194,19 @@ function TabStack() {
   );
 }
 
-
 function OnBoardStack() {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   return (
     <Stack.Navigator
       initialRouteName={'Register'}
-      screenOptions={{
-        // ...DefaultHeaderStyle(),
-        // ...headerLogo(),
-        // ...DefaultStackHeaderStyle(),
-        // ...HeaderBackIcon(),
-      }}>
+      screenOptions={
+        {
+          // ...DefaultHeaderStyle(),
+          // ...headerLogo(),
+          // ...DefaultStackHeaderStyle(),
+          // ...HeaderBackIcon(),
+        }
+      }>
       <Stack.Screen name="OnBoardOne" component={OnboardOne} />
       <Stack.Screen name="OnBoardTwo" component={OnboardTwo} />
       <Stack.Screen name="OnBoardThree" component={OnboardThree} />
@@ -208,16 +216,18 @@ function OnBoardStack() {
 }
 
 function AuthStack() {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   return (
     <Stack.Navigator
       initialRouteName={'Register'}
-      screenOptions={{
-        // ...DefaultHeaderStyle(),
-        // ...headerLogo(),
-        // ...DefaultStackHeaderStyle(),
-        // ...HeaderBackIcon(),
-      }}>
+      screenOptions={
+        {
+          // ...DefaultHeaderStyle(),
+          // ...headerLogo(),
+          // ...DefaultStackHeaderStyle(),
+          // ...HeaderBackIcon(),
+        }
+      }>
       <Stack.Screen
         name="Register"
         options={{
@@ -243,16 +253,18 @@ function AuthStack() {
 }
 
 function ProfileStack() {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   return (
     <Stack.Navigator
       initialRouteName={'ChooseProfile'}
-      screenOptions={{
-        // ...DefaultHeaderStyle(),
-        // ...headerLogo(),
-        // ...DefaultStackHeaderStyle(),
-        // ...HeaderBackIcon(),
-      }}>
+      screenOptions={
+        {
+          // ...DefaultHeaderStyle(),
+          // ...headerLogo(),
+          // ...DefaultStackHeaderStyle(),
+          // ...HeaderBackIcon(),
+        }
+      }>
       <Stack.Screen
         name="ChooseProfile"
         options={{
@@ -284,6 +296,16 @@ function ProfileStack() {
         component={CreateProfileCryptoInformation}
       />
       <Stack.Screen
+        name="CreateProfileInterested"
+        options={{
+          headerTitle: () => undefined,
+          headerTransparent: true,
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+        component={CreateProfileInterested}
+      />
+      <Stack.Screen
         name="CreateProfileFinish"
         options={{
           headerTitle: () => undefined,
@@ -297,9 +319,8 @@ function ProfileStack() {
   );
 }
 
-
 function DiagnosticStack() {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
 
   return (
     <Stack.Navigator initialRouteName={'Diagnostic'}>
@@ -351,25 +372,27 @@ type RootStackProps = {
 const RootStackScreen: React.FC<RootStackProps> = props => {
   return (
     <RootStack.Navigator
-      screenOptions={{ animationEnabled: false, headerBackTitle: ' ', headerShown: false }}
-    >
+      screenOptions={{
+        animationEnabled: false,
+        headerBackTitle: ' ',
+        headerShown: false,
+      }}>
       {props.activeStack === 'splash' ? (
-        <RootStack.Screen name="Splash" component={Splash} options={{
-          animationEnabled: true,
-          animationTypeForReplace: 'push',
-        }} />
-      )
-        : props.activeStack === 'auth' ? (
-          <RootStack.Screen name="AuthStack" component={AuthStack} />
-        )
-          : props.activeStack === "home" ? (
-            <RootStack.Screen name="TabStack" component={TabStack} />
-          ) :
-            props.activeStack === "profile" ? (
-              <RootStack.Screen name="ProfileStack" component={ProfileStack} />
-            ) :
-              null
-      }
+        <RootStack.Screen
+          name="Splash"
+          component={Splash}
+          options={{
+            animationEnabled: true,
+            animationTypeForReplace: 'push',
+          }}
+        />
+      ) : props.activeStack === 'auth' ? (
+        <RootStack.Screen name="AuthStack" component={AuthStack} />
+      ) : props.activeStack === 'home' ? (
+        <RootStack.Screen name="TabStack" component={TabStack} />
+      ) : props.activeStack === 'profile' ? (
+        <RootStack.Screen name="ProfileStack" component={ProfileStack} />
+      ) : null}
       <RootStack.Screen name="OnBoardStack" component={OnBoardStack} />
       <RootStack.Screen name="TabStack" component={TabStack} />
     </RootStack.Navigator>
@@ -385,9 +408,9 @@ export type NavigationRefType = {
 };
 
 export const Navigator = React.forwardRef(
-  ({ }, ref?: React.Ref<NavigationRefType>) => {
-    const { activeStack, setActiveStack } = useContext(NavigatorContext);
-    const { t } = useTranslation();
+  ({}, ref?: React.Ref<NavigationRefType>) => {
+    const {activeStack, setActiveStack} = useContext(NavigatorContext);
+    const {t} = useTranslation();
     const handledUrl = useRef<string>('');
 
     const handleLinking = (url?: string | null) => {
@@ -416,7 +439,7 @@ export const Navigator = React.forwardRef(
         handleLinking(url);
       });
 
-      Linking.addEventListener('url', ({ url }) => {
+      Linking.addEventListener('url', ({url}) => {
         if (lastUrl !== url) {
           // workaround - prevent for fire multipleTimes
           lastUrl = url;

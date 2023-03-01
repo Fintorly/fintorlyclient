@@ -9,6 +9,7 @@ export type RootStackParamList = {
   RegisterOtp: RegisterOtpProps;
   CreateProfilePersonelInfo: CreateProfilePersonelInfoProps
   CreateProfileCryptoInformation: CreateProfileCryptoInformationProps
+  CreateProfileInterested: CreateProfileInterestedProps
   CreateProfileFinish: CreateProfileFinishProps
 };
 
@@ -32,6 +33,10 @@ export type CreateProfileCryptoInformationProps = {
 };
 
 export type CreateProfileFinishProps = {
+  userType: number;
+};
+
+export type CreateProfileInterestedProps = {
   userType: number;
 };
 

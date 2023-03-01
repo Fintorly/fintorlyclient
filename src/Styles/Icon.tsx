@@ -25,9 +25,10 @@ const Icon = (props: Props) => {
         news: require('../Assets/icons/news-onboard.json'),
         mentor: require('../Assets/icons/mentor.json'),
         investor: require('../Assets/icons/investor.json'),
+        finish: require('../Assets/icons/finish.json'),
     }
     return (
-        <TouchableOpacity style={props.style} onPress={props.onPress}   disabled={props.disabled}  >
+        <TouchableOpacity style={props.style} onPress={props.onPress} disabled={props.disabled}  >
             <AnimatedLottieView
                 style={{ width: props.width, height: props.height }}
                 source={icons[props.name]}
